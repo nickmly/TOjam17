@@ -16,7 +16,7 @@ public class MenuScript : MonoBehaviour {
     //Input fields
     public InputField userField, ipField, portField;
 
-    int currentPlayerCount = 1;
+    int currentPlayerCount = 0;
 
 	void Start ()
     {
@@ -36,7 +36,7 @@ public class MenuScript : MonoBehaviour {
 
     void AddPlayerName()
     {
-        if(currentPlayerCount < 5)
+        if(currentPlayerCount < 4)
         {
             GameObject newPlayerField = Instantiate(playerFieldPrefab, Vector3.zero, Quaternion.identity) as GameObject;
             newPlayerField.transform.SetParent(playerGrid, false);

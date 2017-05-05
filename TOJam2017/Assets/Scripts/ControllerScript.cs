@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using AllMobiles;
 
 public class ControllerScript : MonoBehaviour {
 
@@ -8,7 +9,12 @@ public class ControllerScript : MonoBehaviour {
     /// </summary>
     Rigidbody rb;
 
-    public Camera mainCam;
+    /// <summary>
+    /// Mobile component attached to character
+    /// </summary>
+    Mobiles mobile;
+
+    CameraMovement mainCam;
 
     /// <summary>
     /// Horizontal axis value from controller/keyboard
@@ -21,18 +27,41 @@ public class ControllerScript : MonoBehaviour {
     [SerializeField]
     float moveSpeed = 15.0f;
 
+    /// <summary>
+    /// Identifier for player to distinguish between different players
+    /// </summary>
+    public int playerID = 0;
+
+
+    /// <summary>
+    /// Has this player shot yet?
+    /// </summary>
+    bool hasShot = false;
+
 	void Start ()
     {
         rb = GetComponent<Rigidbody>();
-        
-	}
+        mobile = GetComponent<Mobiles>();
+        mainCam = Camera.main.GetComponent<CameraMovement>();
+    }
 	
 	
 	void Update ()
     {
-        HandleInput();
-        HandleMovement();
+        if(IsMyTurn())
+        {
+            HandleInput();
+            HandleMovement();
+        }  
 	}
+
+    /// <summary>
+    /// It is now this player's turn again
+    /// </summary>
+    public void Activate()
+    {
+        hasShot = false;
+    }
     
     /// <summary>
     /// Process input for character
@@ -49,37 +78,43 @@ public class ControllerScript : MonoBehaviour {
         //This demonstrates the snap to any object function
         //if (Input.GetButton("Fire1")) //left crtl
         //{
-        //    mainCam.GetComponent<CameraMovement>().SnapToPosition(transform.position); /// This will snap to the posiiton when the Fire 1 input is pressed
+        //    mainCam.SnapToPosition(transform.position); /// This will snap to the posiiton when the Fire 1 input is pressed
         //}
         ////////////////////CHENZ/////////////////////////////////////
         //Follow Target Functionality-- parent attached.
         //if (Input.GetButton("Fire1")) //left ctrl
         //{
-        //    mainCam.GetComponent<CameraMovement>().FollowTarget(transform);           /// This will parent the transfrom to the target on Fire 1
+        //    mainCam.FollowTarget(transform);           /// This will parent the transfrom to the target on Fire 1
         //}
         //if (Input.GetButton("Fire2")) //Left alt
         //{
-        //    mainCam.GetComponent<CameraMovement>().StopFollowing();
+        //    mainCam.StopFollowing();
         //}
         /////////////////////////////////////////////////////////////////
 
         // Tabbing through the 3 different attacks
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            GetComponent<AllMobiles.Mobiles>().attack++;
+            mobile.attack++;
 
-            if (GetComponent<AllMobiles.Mobiles>().attack > 2)
+            if (mobile.attack > 2)
             {
-                GetComponent<AllMobiles.Mobiles>().attack = 0;
+                mobile.attack = 0;
             }
         }
-        // Checking to see if it will spawn different ammo
-        if (Input.GetKeyDown(KeyCode.Space))
+        if(!hasShot)
         {
-            GetComponent<AllMobiles.Mobiles>().AttackShot();
-            Debug.Log("Shooting");
+            // Checking to see if it will spawn different ammo
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                mobile.AttackShot();
+                hasShot = true;
+                //TEST SWITCHING TURNS
+                GameMaster.gameMode.AdvanceTurn();
+                //
+                Debug.Log("Shooting");
+            }
         }
-        // ------Testing------
 
     }
 
@@ -89,5 +124,18 @@ public class ControllerScript : MonoBehaviour {
     void HandleMovement()
     {
         transform.Translate(transform.right * xAxisValue * moveSpeed);
+    }
+
+    public void SetID(int _id)
+    {
+        playerID = _id;
+    }
+
+    /// <summary>
+    /// Check if this player is able to take input
+    /// </summary>
+    public bool IsMyTurn()
+    {
+        return GameMaster.gameMode.currentPlayerTurn == playerID;
     }
 }

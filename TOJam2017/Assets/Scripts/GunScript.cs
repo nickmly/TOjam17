@@ -16,16 +16,21 @@ public class GunScript : MonoBehaviour
     /// </summary>
     float yAxisValue = 0.0f;
 
+    ControllerScript owningPlayer;
+
     void Start()
     {
-
+        owningPlayer = transform.parent.GetComponent<ControllerScript>();
     }
 
 
     void Update()
     {
-        HandleInput();
-        Rotate();
+        if(owningPlayer.IsMyTurn())
+        {
+            HandleInput();
+            Rotate();
+        }
     }
 
     void HandleInput()
