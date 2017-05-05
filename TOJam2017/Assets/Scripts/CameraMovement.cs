@@ -62,20 +62,25 @@ public class CameraMovement : MonoBehaviour
 
     public void FollowTarget(Transform transformToFollow)
     {
-        isFollowing = true;
-        transform.parent = transformToFollow;
-        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -10.0f);
+        SnapToPosition(transformToFollow.position);                             //Snap to current target position
+        isFollowing = true;                                                     //stop updating the edge camera movement
+        transform.localPosition = new Vector3(                                          
+            transform.localPosition.x, transform.localPosition.y, -10.0f);       //set local z to -10 so we doing end up viewing from 0 depth  
+        transform.parent = transformToFollow;                                   //Set parent transform
+      
     }
     public void StopFollowing()
     {
-        transform.parent = null;
-        isFollowing = false;
+        transform.parent = transform;   // set parent values to this 
+        transform.parent = null;        // remove parent
+        isFollowing = false;            // start updating camera edge movement.
     }
 
     public void SnapToPosition(Vector3 targetPosition)
     {
-        position.x = targetPosition.x;
-        position.y = targetPosition.y;
-        position.z = -10;
-    }
+       position.x = targetPosition.x;
+       position.y = targetPosition.y;
+       position.z = -10;
+       transform.position = position;
+    }  
 }

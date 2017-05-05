@@ -43,13 +43,25 @@ public class ControllerScript : MonoBehaviour {
 
         // ------ Testing ------
 
-       
-        ////This demonstrates the snap to any object function
+        //ONLY UNCOMMENT ONE SECTION AT A TIME OR CHANGE THE INPUT BUTTONS
+        ///////////////////CHENZ/////////////////////////////// 
+        //Snap To position only --  no parent attached.
+        //This demonstrates the snap to any object function
         //if (Input.GetButton("Fire1")) //left crtl
         //{
-        //    mainCam.GetComponent<CameraMovement>().SnapToPosition(transform.position);
+        //    mainCam.GetComponent<CameraMovement>().SnapToPosition(transform.position); /// This will snap to the posiiton when the Fire 1 input is pressed
         //}
-
+        ////////////////////CHENZ/////////////////////////////////////
+        //Follow Target Functionality-- parent attached.
+        //if (Input.GetButton("Fire1")) //left ctrl
+        //{
+        //    mainCam.GetComponent<CameraMovement>().FollowTarget(transform);           /// This will parent the transfrom to the target on Fire 1
+        //}
+        //if (Input.GetButton("Fire2")) //Left alt
+        //{
+        //    mainCam.GetComponent<CameraMovement>().StopFollowing();
+        //}
+        /////////////////////////////////////////////////////////////////
 
         // Tabbing through the 3 different attacks
         if (Input.GetKeyDown(KeyCode.Tab))
