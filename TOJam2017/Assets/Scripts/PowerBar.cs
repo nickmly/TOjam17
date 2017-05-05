@@ -37,6 +37,7 @@ public class PowerBar : MonoBehaviour
         //Finds our slider in the scene UI canvas 
         powerBar = GameObject.Find("Power Bar").GetComponent<Slider>();
 
+        powerBarValue = 0f;
         //Sets the minimum, maximum value clamps of the power bar and sets the current value to our variable
         powerBar.minValue = 0f;
         powerBar.maxValue = 10f;
@@ -44,8 +45,10 @@ public class PowerBar : MonoBehaviour
     }
 
     void SetPower()
-    {
+    {        
         powerBarValue += powerBarThreshhold * Time.deltaTime;
+        powerBarValue = Mathf.Clamp(powerBarValue, powerBar.minValue, powerBar.maxValue);
+      
         powerBar.value = powerBarValue;
         didShoot = false;
     }
@@ -55,6 +58,11 @@ public class PowerBar : MonoBehaviour
         didShoot = true;
         powerBarValue = 0f;
         powerBar.value = powerBarValue;
+    }
+
+    public bool DidShoot()
+    {
+        return didShoot;
     }
 
     public bool IsCharging()

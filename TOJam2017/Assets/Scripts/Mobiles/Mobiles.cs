@@ -140,14 +140,14 @@ namespace AllMobiles
         // ------------ Functionalities ------------
         public virtual void AttackShot(float power)
         {
-            Force *= power;
+            
         }
 
-        public virtual void Shoot(string folder, string ammo)
+        public virtual void Shoot(string folder, string ammo, float power)
         {
             GameObject newAmmo = Instantiate(Resources.Load("MobileModels/" + folder + "/" + ammo), ammoSpawn.position, ammoSpawn.rotation) as GameObject;
             Rigidbody newAmmoRb = newAmmo.GetComponent<Rigidbody>();
-            newAmmoRb.AddForce(ammoSpawn.transform.up * Force);
+            newAmmoRb.AddForce(ammoSpawn.transform.up * Force * power);
             Physics.IgnoreCollision(newAmmo.GetComponent<Collider>(), col);
         }
 
