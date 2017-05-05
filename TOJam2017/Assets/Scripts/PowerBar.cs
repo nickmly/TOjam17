@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PowerBar : MonoBehaviour {
-
+public class PowerBar : MonoBehaviour
+{
     public Slider powerBar;
     private float powerBarThreshhold = 10f;
     private float powerBarValue = 0f;
@@ -22,7 +22,7 @@ public class PowerBar : MonoBehaviour {
         if (Input.GetKey(KeyCode.Space))
         {
             SetPower();
-           charging = true;
+            charging = true;
         }
 
         if (charging && Input.GetKeyUp(KeyCode.Space))
@@ -30,7 +30,6 @@ public class PowerBar : MonoBehaviour {
             Shot();
             charging = false;
         }
-       
     }
 
     void Initialize()
@@ -42,16 +41,13 @@ public class PowerBar : MonoBehaviour {
         powerBar.minValue = 0f;
         powerBar.maxValue = 10f;
         powerBar.value = powerBarValue;
-
     }
-
 
     void SetPower()
     {
         powerBarValue += powerBarThreshhold * Time.deltaTime;
         powerBar.value = powerBarValue;
         didShoot = false;
-        
     }
 
     void Shot()
@@ -61,8 +57,13 @@ public class PowerBar : MonoBehaviour {
         powerBar.value = powerBarValue;
     }
 
-   
+    public bool IsCharging()
+    {
+        return charging;
+    }
 
-
-
+    public float GetValue()
+    {
+        return powerBarValue;
+    }
 }

@@ -33,7 +33,7 @@ namespace AllMobiles
             MobileMass = bMobileMass;
             ProjectileMass = bProjectileMass;
 
-            Force = 500.0f;
+            Force = 100.0f;
         }
 
         // Update is called once per frame
@@ -42,10 +42,10 @@ namespace AllMobiles
 
         }
 
-        public override void AttackShot()
+        public override void AttackShot(float power)
         {
-            base.AttackShot();
-
+            base.AttackShot(power);
+            
             switch (attack)
             {
                 case 0:

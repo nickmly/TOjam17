@@ -2,7 +2,8 @@
 using System.Collections;
 using AllMobiles;
 
-public class ControllerScript : MonoBehaviour {
+public class ControllerScript : MonoBehaviour
+{
 
     /// <summary>
     /// Rigidbody component attached to character
@@ -13,6 +14,11 @@ public class ControllerScript : MonoBehaviour {
     /// Mobile component attached to character
     /// </summary>
     Mobiles mobile;
+
+    /// <summary>
+    /// The power bar in the HUD
+    /// </summary>
+    PowerBar powerBar;
 
     CameraMovement mainCam;
 
@@ -38,22 +44,22 @@ public class ControllerScript : MonoBehaviour {
     /// </summary>
     bool hasShot = false;
 
-	void Start ()
+    void Start()
     {
         rb = GetComponent<Rigidbody>();
         mobile = GetComponent<Mobiles>();
         mainCam = Camera.main.GetComponent<CameraMovement>();
+        powerBar = GameObject.FindObjectOfType<PowerBar>();
     }
-	
-	
-	void Update ()
+
+    void Update()
     {
-        if(IsMyTurn())
+        if (IsMyTurn())
         {
             HandleInput();
             HandleMovement();
-        }  
-	}
+        }
+    }
 
     /// <summary>
     /// It is now this player's turn again
@@ -62,7 +68,7 @@ public class ControllerScript : MonoBehaviour {
     {
         hasShot = false;
     }
-    
+
     /// <summary>
     /// Process input for character
     /// </summary>
@@ -102,12 +108,12 @@ public class ControllerScript : MonoBehaviour {
                 mobile.attack = 0;
             }
         }
-        if(!hasShot)
+        if (!hasShot && powerBar.IsCharging())
         {
             // Checking to see if it will spawn different ammo
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyUp(KeyCode.Space))
             {
-                mobile.AttackShot();
+                mobile.AttackShot(powerBar.GetValue());
                 hasShot = true;
                 //TEST SWITCHING TURNS
                 GameMaster.gameMode.AdvanceTurn();

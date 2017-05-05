@@ -138,8 +138,9 @@ namespace AllMobiles
         // ------------ Getters and Setters ------------
 
         // ------------ Functionalities ------------
-        public virtual void AttackShot()
+        public virtual void AttackShot(float power)
         {
+            Force *= power;
         }
 
         public virtual void Shoot(string folder, string ammo)
