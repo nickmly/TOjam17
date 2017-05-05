@@ -21,8 +21,9 @@ namespace AllMobiles
         Transform gunTransform;
 
         // Use this for initialization
-        void Start()
+        protected override void Start()
         {
+            base.Start();
             // Will have to make a proper spawn location once models are implemented
             AmmoSpawn = gunTransform;
 

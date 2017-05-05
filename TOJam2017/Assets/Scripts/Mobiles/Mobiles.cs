@@ -11,6 +11,9 @@ namespace AllMobiles
 {
     public class Mobiles : MonoBehaviour
     {
+        // ------------ Components ------------
+        private Collider col;
+        // ------------ Components ------------
         // ------------ Ammo Prefabs and Spawn Location ------------
         private GameObject ammoPref;
         private Transform ammoSpawn;
@@ -41,6 +44,12 @@ namespace AllMobiles
         private bool isAlive;
         private bool turnEnd;
         // ------------ Mobile Functionality ------------
+
+
+        protected virtual void Start()
+        {
+            col = GetComponent<Collider>();
+        }
 
         // ------------ Setting Stats ------------
         public Mobiles()
@@ -138,6 +147,7 @@ namespace AllMobiles
             GameObject newAmmo = Instantiate(Resources.Load("MobileModels/" + folder + "/" + ammo), ammoSpawn.position, ammoSpawn.rotation) as GameObject;
             Rigidbody newAmmoRb = newAmmo.GetComponent<Rigidbody>();
             newAmmoRb.AddForce(ammoSpawn.transform.up * Force);
+            Physics.IgnoreCollision(newAmmo.GetComponent<Collider>(), col);
         }
 
         public virtual void TakeDamage(int damageTaken)
