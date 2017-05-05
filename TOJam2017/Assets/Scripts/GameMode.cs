@@ -10,6 +10,7 @@ public class GameMode : MonoBehaviour
     //
 
     // Players
+    public int playerCount = 0;
     List<ControllerScript> players = new List<ControllerScript>();
     public int currentPlayerTurn = 0;
 
@@ -33,7 +34,9 @@ public class GameMode : MonoBehaviour
     /// </summary>
     void InitGame()
     {
+       // playerCount = GameMaster.playerCount; // TODO: UNCOMMENT THIS, just for testing purposes it is left out
         SpawnAllPlayers();
+        mainCam.FollowTarget(players[currentPlayerTurn].transform);
     }
 
     /// <summary>
@@ -41,7 +44,7 @@ public class GameMode : MonoBehaviour
     /// </summary>
     void SpawnAllPlayers()
     {
-        for (int i = 0; i < GameMaster.playerCount; i++)
+        for (int i = 0; i < playerCount; i++)
         {
             GameObject newPlayer = Instantiate(playerPrefab, spawnPoints[i].position, playerPrefab.transform.rotation);
             ControllerScript cs = newPlayer.GetComponent<ControllerScript>();
