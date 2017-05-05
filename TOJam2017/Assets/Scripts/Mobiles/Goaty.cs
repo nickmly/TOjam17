@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Skitty Mobile
+/// Goaty Mobile
 /// </summary>
 
 namespace AllMobiles
 {
-    public class Skitty : Mobiles
+    public class Goaty : Mobiles
     {
         // ------ Base mobile attributes ------
         private int bHealth = 100;
@@ -33,7 +33,7 @@ namespace AllMobiles
             MobileMass = bMobileMass;
             ProjectileMass = bProjectileMass;
 
-            Force = 100.0f;
+            Force = 500.0f;
         }
 
         // Update is called once per frame
@@ -42,22 +42,22 @@ namespace AllMobiles
 
         }
 
-        public override void AttackShot(float power)
+        public override void AttackShot()
         {
-            base.AttackShot(power);
-            
+            base.AttackShot();
+
             switch (attack)
             {
                 case 0:
-                    Shoot("Skitty/Attack", "ammo1", power);
+                    Shoot("Goaty/Attack", "ammo1");
                     Debug.Log("Attack 1");
                     break;
                 case 1:
-                    Shoot("skitty/attack", "ammo2", power);
+                    Shoot("Goaty/Attack", "ammo2");
                     Debug.Log("Attack 2");
                     break;
                 case 2:
-                    Shoot("skitty/attack", "ammo3", power);
+                    Shoot("Goaty/Attack", "ammo3");
                     Debug.Log("Attack 3");
                     break;
                 default:
