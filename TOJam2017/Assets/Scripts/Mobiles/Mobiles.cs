@@ -163,7 +163,10 @@ namespace AllMobiles
         public virtual void TakeDamage(int damageTaken)
         {
             Debug.Log("Damage taken: " + damageTaken);
-            Health = Health - (damageTaken - Armour);
+            // *** Need a better method for the armour and damage calculation ****
+            //Health = Health - (damageTaken - Armour);
+            // *** Need a better method for the armour and damage calculation ****
+            Health = Health - damageTaken;
             healthAndStamina.TakeDamage(damageTaken);
         }
         // ------------ Functionalities ------------
