@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Skitty Mobile
+/// Goaty Mobile
 /// </summary>
 
 namespace AllMobiles
 {
-    public class Skitty : Mobiles
+    public class Goaty : Mobiles
     {
         // ------ Base mobile attributes ------
         private int bHealth = 100;
@@ -45,19 +45,19 @@ namespace AllMobiles
         public override void AttackShot(float power)
         {
             base.AttackShot(power);
-            
+
             switch (attack)
             {
                 case 0:
-                    Shoot("Skitty/Attack", "ammo1", power);
+                    Shoot("Goaty/Attack", "ammo1", power);
                     Debug.Log("Attack 1");
                     break;
                 case 1:
-                    Shoot("skitty/attack", "ammo2", power);
+                    Shoot("Goaty/Attack", "ammo2", power);
                     Debug.Log("Attack 2");
                     break;
                 case 2:
-                    Shoot("skitty/attack", "ammo3", power);
+                    Shoot("Goaty/Attack", "ammo3", power);
                     Debug.Log("Attack 3");
                     break;
                 default:
