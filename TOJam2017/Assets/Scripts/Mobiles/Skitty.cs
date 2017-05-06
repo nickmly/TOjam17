@@ -41,7 +41,7 @@ namespace AllMobiles
         // Update is called once per frame
         void Update()
         {
-            if (canShoot)
+            /*if (canShoot)
             {
                 shootDelay -= Time.deltaTime;
                 if (shootDelay < 0)
@@ -49,7 +49,7 @@ namespace AllMobiles
                     shootDelay = 3;
                     canShoot = false;
                 }
-            }
+            }*/
         }
 
         public override void AttackShot(float power)
@@ -61,11 +61,11 @@ namespace AllMobiles
                 case 0:
                     for (int i = 0; i < 3; i++)
                     {
-                        canShoot = true;
-                        if (canShoot)
-                        {
+                        //canShoot = true;
+                        //if (canShoot)
+                        //{
                             Shoot("Skitty/Attack", "ammo1", power);
-                        }
+                        //}
                         Debug.Log("Attack 1");
                     }
                     break;
