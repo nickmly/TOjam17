@@ -5,49 +5,50 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour {
 
-    //Player Component
-    ControllerScript player;
-
     //Health Stuff 
-    public Slider healthBar;
-    //not used private float healthBarThreshhold = 10f;
-    private float healthBarValue = 0f;
-    
-    void Awake()
+    public Image healthBar;
+    public float maxHp;
+    public float currentHp;
+    float hpBar;
+
+    void Start()
     {
         Initialize();
     }
 
     void Update()
     {
-       
         DeathCheck();
+        HealthBar(hpBar);
     }
 
     void Initialize()
     {
-        player = GetComponent<ControllerScript>();
-
-        //Sets both the defaults of the stats to full
-        healthBarValue = 10f;
-        //Sets the minimum, maximum value clamps of the health & stamina bar and sets the current value to our variable
-        healthBar.minValue = 0f;
-        healthBar.maxValue = 10f;
-        healthBar.value = healthBarValue;
+        maxHp = this.GetComponent<AllMobiles.Mobiles>().Health;
+        currentHp = maxHp;
+        hpBar = currentHp / maxHp;
     }
 
     public void TakeDamage(float damage)
     {
-        healthBarValue -= damage;
-        healthBarValue = Mathf.Clamp(healthBarValue, healthBar.minValue, healthBar.maxValue);
+        currentHp -= damage;
 
-        healthBar.value = healthBarValue;
+        if (currentHp < 0)
+            currentHp = 0;
+
+        hpBar = currentHp / maxHp;
+
+        HealthBar(hpBar);
+    }
+
+    void HealthBar(float health)
+    {
+        healthBar.fillAmount = (Mathf.Lerp(healthBar.fillAmount, health, 0.2f));
     }
 
     void DeathCheck()
     {
-        //kills the unit
-        if (healthBar.value < 0.1f)
+        if (currentHp <= 0)
         {
             Destroy(gameObject);
         }

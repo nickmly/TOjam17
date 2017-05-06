@@ -13,7 +13,7 @@ namespace AllMobiles
     {
         // ------------ Components ------------
         private Collider col;
-        private HealthAndStamina healthAndStamina;
+        private Health healthBar;
         // ------------ Components ------------
 
         // ------------ Attack Effect Prefabs and Spawn Location ------------
@@ -55,7 +55,7 @@ namespace AllMobiles
         protected virtual void Start()
         {
             col = GetComponent<Collider>();
-            healthAndStamina = GetComponent<HealthAndStamina>();
+            healthBar = GetComponent<Health>();
         }
 
         // ------------ Setting Stats ------------
@@ -167,7 +167,7 @@ namespace AllMobiles
             //Health = Health - (damageTaken - Armour);
             // *** Need a better method for the armour and damage calculation ****
             Health = Health - damageTaken;
-            healthAndStamina.TakeDamage(damageTaken);
+            healthBar.TakeDamage(damageTaken);
         }
         // ------------ Functionalities ------------
     }
