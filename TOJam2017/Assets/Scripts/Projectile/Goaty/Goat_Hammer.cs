@@ -5,49 +5,49 @@ using UnityEngine;
 namespace AllMobiles
 {
 
-    public class Skitty_Attack1 : Skitty
+    public class Goat_Hammer : Goaty
     {
         GameObject player;
+        GameObject babyGoat;
 
         // ------ Base mobile attributes ------
-        private int bProjectileMass = 5;
-        private int bDamage = 15;
+        private int bDamage = 10;
+        public bool babyGoatStart = false;
         // ------ Base mobile attributes ------
 
         // Use this for initialization
         protected override void Start()
         {
-            base.Start();
-
-            ProjectilePosition = this.transform;
-            ProjectileMass = bProjectileMass;
-
-            Destroy(gameObject, 10.0f);
+            babyGoat = GameObject.Find("babyGoat(Clone)");
         }
 
-        // Update is called once per frame
         void Update()
         {
-
+            if (babyGoatStart)
+            {
+                babyGoat.transform.position = Vector2.MoveTowards(babyGoat.transform.position, this.transform.position, 0.02f);
+            }
         }
 
         void OnCollisionEnter(Collision other)
         {
-            //Debug.Log("Hit");
-            //Destroy(gameObject);
+            Debug.Log("Hit");
 
             if (other.gameObject.tag == "Player")
             {
+                babyGoatStart = true;
                 player = other.gameObject;
-
                 player.GetComponent<AllMobiles.Mobiles>().TakeDamage(bDamage);
-
-                Destroy(gameObject, 0.0f);
             }
 
             if (other.gameObject.tag == "Map")
             {
-                Destroy(gameObject, 1.0f);
+                babyGoatStart = true;
+            }
+
+            if (other.gameObject.name == "babyGoat(Clone)")
+            {
+                babyGoatStart = false;
             }
         }
     }

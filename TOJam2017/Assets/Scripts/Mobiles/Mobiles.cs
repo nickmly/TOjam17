@@ -145,19 +145,19 @@ namespace AllMobiles
         // ------------ Getters and Setters ------------
 
         // ------------ Functionalities ------------
-        public virtual void AttackShot(float power){}
+        public virtual void AttackShot(float power) {}
 
         public virtual void Shoot(string folder, string ammo, float power)
         {
-            GameObject newAmmo = Instantiate(Resources.Load("MobileModels/" + folder + "/" + ammo), ammoSpawn.position , ammoSpawn.rotation) as GameObject;
+            GameObject newAmmo = Instantiate(Resources.Load("MobileModels/" + folder + "/" + ammo), ammoSpawn.position, ammoSpawn.rotation) as GameObject;
             Rigidbody newAmmoRb = newAmmo.GetComponent<Rigidbody>();
             newAmmoRb.AddForce(ammoSpawn.transform.up * Force * power);
             Physics.IgnoreCollision(newAmmo.GetComponent<Collider>(), col);
         }
 
-        public virtual void InstEffects(string folder, string effect)
+        public virtual void InstEffects(string folder, string effect, Transform spawnPosition)
         {
-            GameObject attackEffect = Instantiate(Resources.Load("MobileModels/" + folder + "/" + effect), ProjectilePosition.position, Quaternion.identity) as GameObject;
+            GameObject attackEffect = Instantiate(Resources.Load("MobileModels/" + folder + "/" + effect), spawnPosition.position, Quaternion.identity) as GameObject;
         }
 
         public virtual void TakeDamage(int damageTaken)

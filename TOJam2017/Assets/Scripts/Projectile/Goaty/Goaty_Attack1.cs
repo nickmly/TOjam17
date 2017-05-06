@@ -5,7 +5,7 @@ using UnityEngine;
 namespace AllMobiles
 {
   
-    public class Goaty_Attack1 : Mobiles
+    public class Goaty_Attack1 : Goaty
     {
         GameObject player;
 

@@ -56,6 +56,7 @@ namespace AllMobiles
                     Debug.Log("Attack 2");
                     break;
                 case 2:
+                    InstEffects("Goaty/Attack", "babyGoat", this.transform);
                     Shoot("Goaty/Attack", "ammo3", power);
                     Debug.Log("Attack 3");
                     break;

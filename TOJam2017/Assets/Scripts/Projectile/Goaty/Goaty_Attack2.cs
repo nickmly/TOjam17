@@ -5,7 +5,7 @@ using UnityEngine;
 namespace AllMobiles
 {
 
-    public class Goaty_Attack2 : Mobiles
+    public class Goaty_Attack2 : Goaty
     {
         GameObject player;
 
@@ -47,7 +47,7 @@ namespace AllMobiles
 
             if (other.gameObject.tag == "Map")
             {
-                InstEffects("Goaty/Attack", "hay");
+                InstEffects("Goaty/Attack", "hay", this.transform);
                 Destroy(gameObject, 1.0f);
             }
         }

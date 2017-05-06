@@ -5,7 +5,7 @@ using UnityEngine;
 namespace AllMobiles
 {
 
-    public class Skitty_Attack2 : Mobiles
+    public class Skitty_Attack2 : Skitty
     {
         GameObject player;
 

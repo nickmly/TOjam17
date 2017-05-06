@@ -5,13 +5,12 @@ using UnityEngine;
 namespace AllMobiles
 {
 
-    public class Goaty_Special : Mobiles
+    public class Goaty_Special : Goaty
     {
         GameObject player;
 
         // ------ Base mobile attributes ------
         private int bProjectileMass = 5;
-        private int bDamage = 10;
         // ------ Base mobile attributes ------
 
         // Use this for initialization
@@ -34,20 +33,12 @@ namespace AllMobiles
         void OnCollisionEnter(Collision other)
         {
             Debug.Log("Hit");
-            Destroy(gameObject);
 
-            if (other.gameObject.tag == "Player")
+            if (other.gameObject.tag == "Player" || other.gameObject.tag == "Map")
             {
-                player = other.gameObject;
-
-                player.GetComponent<AllMobiles.Mobiles>().TakeDamage(bDamage);
-
-                Destroy(gameObject, 1.0f);
-            }
-
-            if (other.gameObject.tag == "Map")
-            {
-                InstEffects("Goaty/Attack", "goatHammer");
+                Vector2 newPosition = new Vector2(this.transform.position.x, this.transform.position.y + 30);
+                this.transform.position = newPosition;
+                InstEffects("Goaty/Attack", "goatHammer", this.transform);
                 Destroy(gameObject, 1.0f);
             }
         }
