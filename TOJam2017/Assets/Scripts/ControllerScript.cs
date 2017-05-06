@@ -91,7 +91,7 @@ public class ControllerScript : MonoBehaviour
         mobile = GetComponent<Mobiles>();
         mainCam = Camera.main.GetComponent<CameraMovement>();
         powerBar = FindObjectOfType<PowerBar>();
-        stamina = GetComponent<Stamina>();
+        stamina = FindObjectOfType<Stamina>();
         health = GetComponent<Health>();
 
     }
