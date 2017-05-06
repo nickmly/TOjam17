@@ -82,6 +82,10 @@ public class ControllerScript : MonoBehaviour
                 Goaty goaty = gameObject.AddComponent<Goaty>();
                 goaty.gunTransform = gunTransform;
                 break;
+            case GameMaster.MobileType.Spuppy:
+                Spuppy spuppy = gameObject.AddComponent<Spuppy>();
+                spuppy.gunTransform = gunTransform;
+                break;
         }
     }
 

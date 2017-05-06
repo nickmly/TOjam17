@@ -31,8 +31,7 @@ public class CameraMovement : MonoBehaviour
     }
     // Update is called once per frame
     void Update()
-    {
-        
+    {        
         if (!isFollowing)
         {
             HandleScrollMovement();
@@ -50,7 +49,7 @@ public class CameraMovement : MonoBehaviour
             }
         }
         transform.position = position;
-        transform.rotation = rotation;
+       // transform.rotation = rotation;
     }
     void HandleScrollMovement()
     {

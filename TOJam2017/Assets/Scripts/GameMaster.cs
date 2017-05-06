@@ -8,7 +8,8 @@ public class GameMaster {
     public enum MobileType
     {
         Skitty,
-        Goaty
+        Goaty,
+        Spuppy
     }
     public static MobileType[] mobileTypes;
     public static int playerCount = 0;
