@@ -87,7 +87,7 @@ public class HealthAndStamina : MonoBehaviour {
     //=================================HEALTH TINGS=============================================
     //**TO DO** link the health stuff up to the mobiles script values 
 
-    void TakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         healthBarValue -= damage;
         healthBarValue = Mathf.Clamp(healthBarValue, healthBar.minValue, healthBar.maxValue);

@@ -33,8 +33,8 @@ namespace AllMobiles
 
         void OnCollisionEnter(Collision other)
         {
-            Debug.Log("Hit");
-            Destroy(gameObject);
+            //Debug.Log("Hit");
+            //Destroy(gameObject);
 
             if (other.gameObject.tag == "Player")
             {

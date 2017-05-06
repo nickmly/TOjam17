@@ -13,6 +13,7 @@ namespace AllMobiles
     {
         // ------------ Components ------------
         private Collider col;
+        private HealthAndStamina healthAndStamina;
         // ------------ Components ------------
 
         // ------------ Attack Effect Prefabs and Spawn Location ------------
@@ -54,6 +55,7 @@ namespace AllMobiles
         protected virtual void Start()
         {
             col = GetComponent<Collider>();
+            healthAndStamina = GetComponent<HealthAndStamina>();
         }
 
         // ------------ Setting Stats ------------
@@ -147,7 +149,7 @@ namespace AllMobiles
 
         public virtual void Shoot(string folder, string ammo, float power)
         {
-            GameObject newAmmo = Instantiate(Resources.Load("MobileModels/" + folder + "/" + ammo), ammoSpawn.position, ammoSpawn.rotation) as GameObject;
+            GameObject newAmmo = Instantiate(Resources.Load("MobileModels/" + folder + "/" + ammo), ammoSpawn.position , ammoSpawn.rotation) as GameObject;
             Rigidbody newAmmoRb = newAmmo.GetComponent<Rigidbody>();
             newAmmoRb.AddForce(ammoSpawn.transform.up * Force * power);
             Physics.IgnoreCollision(newAmmo.GetComponent<Collider>(), col);
@@ -160,7 +162,9 @@ namespace AllMobiles
 
         public virtual void TakeDamage(int damageTaken)
         {
+            Debug.Log("Damage taken: " + damageTaken);
             Health = Health - (damageTaken - Armour);
+            healthAndStamina.TakeDamage(damageTaken);
         }
         // ------------ Functionalities ------------
     }
