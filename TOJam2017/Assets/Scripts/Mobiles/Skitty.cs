@@ -20,8 +20,7 @@ namespace AllMobiles
         private float shootDelay = 3;
         // ------ Base mobile attributes ------
 
-        [SerializeField]
-        Transform gunTransform;
+        public Transform gunTransform;
 
         // Use this for initialization
         protected override void Start()

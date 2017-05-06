@@ -18,6 +18,15 @@ public class MenuScript : MonoBehaviour {
 
     int currentPlayerCount = 0;
 
+    //Mobile types
+    public GameMaster.MobileType[] mobileTypes;
+
+    private void Awake()
+    {
+       mobileTypes = new GameMaster.MobileType[4];
+       GameMaster.SetMobileTypes();
+    }    
+
 	void Start ()
     {
 	
@@ -41,6 +50,8 @@ public class MenuScript : MonoBehaviour {
             GameObject newPlayerField = Instantiate(playerFieldPrefab, Vector3.zero, Quaternion.identity) as GameObject;
             newPlayerField.transform.SetParent(playerGrid, false);
             newPlayerField.transform.GetChild(0).GetComponent<Text>().text = "Player" + currentPlayerCount;
+            newPlayerField.GetComponent<MobileTypeChanger>().id = currentPlayerCount;
+            newPlayerField.GetComponent<MobileTypeChanger>().menu = this;
             currentPlayerCount += 1;
         }    
     }
@@ -71,6 +82,7 @@ public class MenuScript : MonoBehaviour {
     {
         GameMaster.playerCount = currentPlayerCount;
         SceneManager.LoadScene("Test");
+        GameMaster.mobileTypes = mobileTypes;
     }
     
     /// <summary>
