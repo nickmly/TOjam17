@@ -22,7 +22,7 @@ namespace AllMobiles
         // Use this for initialization
         protected override void Start()
         {
-          
+
             // Will have to make a proper spawn location once models are implemented
             AmmoSpawn = gunTransform;
             //MobilePosition; (random location to be spawned on the map)
@@ -57,8 +57,11 @@ namespace AllMobiles
                     Debug.Log("Attack 2");
                     break;
                 case 2:
+                    this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+                    this.GetComponent<BoxCollider>().isTrigger = true;
+
                     Shoot("Goaty/Attack", "ammo3", power);
-                    InstEffects("Goaty/Attack", "babyGoat", this.transform);
+                    StartCoroutine(BabyGoat());
                     Debug.Log("Attack 3");
                     break;
                 default:
@@ -70,5 +73,12 @@ namespace AllMobiles
         {
             base.TakeDamage(damageTaken);
         }
+
+        IEnumerator BabyGoat()
+        {
+            yield return new WaitForSeconds(1.0f);
+            InstEffects("Goaty/Attack", "babyGoat", this.transform);
+        }
     }
 }
+

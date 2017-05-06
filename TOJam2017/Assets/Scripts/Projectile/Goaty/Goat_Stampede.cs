@@ -31,15 +31,18 @@ namespace AllMobiles
         {
             Debug.Log("Hit");
 
+            if (other.gameObject.name == "babyGoat(Clone)")
+            {
+                Destroy(gameObject);
+            }
+        }
+
+        void OnTriggerEnter(Collider other)
+        {
             if (other.gameObject.tag == "Player")
             {
                 player = other.gameObject;
                 player.GetComponent<AllMobiles.Mobiles>().TakeDamage(bDamage);
-            }
-
-            if (other.gameObject.name == "babyGoat(Clone)")
-            {
-                beginStampede = false;
             }
         }
     }

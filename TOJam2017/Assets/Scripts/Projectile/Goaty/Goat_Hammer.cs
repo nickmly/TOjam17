@@ -9,7 +9,6 @@ namespace AllMobiles
     {
         GameObject player;
         GameObject babyGoat;
-        public Transform stampedeSpawn;
 
         // ------ Base mobile attributes ------
         private int bDamage = 10;
@@ -39,13 +38,23 @@ namespace AllMobiles
                 babyGoatStart = true;
                 player = other.gameObject;
                 player.GetComponent<AllMobiles.Mobiles>().TakeDamage(bDamage);
+
+                this.transform.rotation = Quaternion.identity;
+                this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+                this.GetComponent<BoxCollider>().isTrigger = true;
             }
 
             if (other.gameObject.tag == "Map")
             {
                 babyGoatStart = true;
+                this.transform.rotation = Quaternion.identity;
+                this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+                this.GetComponent<BoxCollider>().isTrigger = true;
             }
+        }
 
+        void OnTriggerEnter(Collider other)
+        {
             if (other.gameObject.name == "babyGoat(Clone)")
             {
                 babyGoatStart = false;

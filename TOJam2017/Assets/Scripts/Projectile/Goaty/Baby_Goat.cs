@@ -13,21 +13,24 @@ namespace AllMobiles
         // ------ Base mobile attributes ------
         private int bDamage = 10;
 
-        private float stampedeDelay = 0.6f;
+        private float stampedeDelay = 1.0f;
         // ------ Base mobile attributes ------
+
+        protected override void Start()
+        {
+            
+        }
 
         void OnCollisionEnter(Collision other)
         {
-            Debug.Log("Hit");
 
             if (other.gameObject.tag == "Player")
             {
                 playerTargets = GameObject.FindGameObjectsWithTag("Player");
 
-                foreach(GameObject target in playerTargets)
+                foreach (GameObject target in playerTargets)
                 {
-                    target.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX;
-                    target.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY;
+                    target.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                     target.GetComponent<BoxCollider>().isTrigger = true;
                 }
 
@@ -41,8 +44,7 @@ namespace AllMobiles
 
             if (other.gameObject.name == "goatStampede(Clone)")
             {
-                Destroy(other.gameObject);
-                Destroy(gameObject, 4.0f);
+                StartCoroutine(CleanUp());
             }
         }
 
@@ -50,9 +52,20 @@ namespace AllMobiles
         {
             for (int i = 0; i <= 4; i++)
             {
-                InstEffects("Goaty/Attack", "goatStampede", hammerGoat.GetComponent<Goat_Hammer>().stampedeSpawn);
+                InstEffects("Goaty/Attack", "goatStampede", hammerGoat.transform);
                 yield return new WaitForSeconds(stampedeDelay);
             }
+        }
+
+        IEnumerator CleanUp()
+        {
+            foreach (GameObject target in playerTargets)
+            {
+                target.GetComponent<BoxCollider>().isTrigger = false;
+                target.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
+            }
+            yield return new WaitForSeconds(2.0f);
+            Destroy(gameObject, 4.0f);
         }
     }
 }
