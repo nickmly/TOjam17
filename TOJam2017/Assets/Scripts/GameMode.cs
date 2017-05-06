@@ -36,7 +36,7 @@ public class GameMode : MonoBehaviour
     {
         playerCount = GameMaster.playerCount; // TODO: UNCOMMENT THIS, just for testing purposes it is left out
         SpawnAllPlayers();
-        mainCam.FollowTarget(players[currentPlayerTurn].transform);
+        SwitchToPlayer(currentPlayerTurn);
     }
 
     /// <summary>
@@ -87,14 +87,22 @@ public class GameMode : MonoBehaviour
         if (currentPlayerTurn < players.Count - 1)
         {
             currentPlayerTurn++;
-            mainCam.FollowTarget(players[currentPlayerTurn].transform);
-            players[currentPlayerTurn].Activate();
+            SwitchToPlayer(currentPlayerTurn);
         }
         else
         {
             currentPlayerTurn = 0;
-            mainCam.FollowTarget(players[currentPlayerTurn].transform);
-            players[currentPlayerTurn].Activate();
+            SwitchToPlayer(currentPlayerTurn);
         }
+    }
+
+    /// <summary>
+    /// Locks camera to new player and activates them
+    /// </summary>
+    /// <param name="index"></param>
+    void SwitchToPlayer(int index)
+    {
+        mainCam.FollowTarget(players[index].transform);
+        players[index].Activate();
     }
 }
