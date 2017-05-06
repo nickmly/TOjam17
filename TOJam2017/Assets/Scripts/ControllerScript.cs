@@ -29,7 +29,8 @@ public class ControllerScript : MonoBehaviour
     /// <summary>
     /// Health and stamina in HUD
     /// </summary>
-    HealthAndStamina healthAndStamina;
+    Stamina stamina;
+    Health health;
 
     CameraMovement mainCam;
 
@@ -85,7 +86,8 @@ public class ControllerScript : MonoBehaviour
         mobile = GetComponent<Mobiles>();
         mainCam = Camera.main.GetComponent<CameraMovement>();
         powerBar = FindObjectOfType<PowerBar>();
-        healthAndStamina = GetComponent<HealthAndStamina>();
+        stamina = GetComponent<Stamina>();
+        health = GetComponent<Health>();
 
     }
 
@@ -104,7 +106,7 @@ public class ControllerScript : MonoBehaviour
     public void Activate()
     {
         hasShot = false;
-        healthAndStamina.ResetStamina();
+        stamina.ResetStamina();
     }
 
     /// <summary>
@@ -161,7 +163,7 @@ public class ControllerScript : MonoBehaviour
     {
         mobile.AttackShot(powerBar.GetValue());
         hasShot = true;
-        healthAndStamina.ResetStamina();
+        stamina.ResetStamina();
 
         //TEST SWITCHING TURNS
         GameMaster.gameMode.AdvanceTurn();
@@ -175,7 +177,7 @@ public class ControllerScript : MonoBehaviour
     /// </summary>
     void HandleMovement()
     {
-        if(healthAndStamina.CanMove())
+        if(stamina.CanMove())
             transform.Translate(transform.right * xAxisValue * moveSpeed);
     }
 
