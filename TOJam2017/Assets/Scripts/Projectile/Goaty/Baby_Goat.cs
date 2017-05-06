@@ -13,7 +13,7 @@ namespace AllMobiles
         // ------ Base mobile attributes ------
         private int bDamage = 10;
 
-        private float stampedeDelay = 1.0f;
+        private float stampedeDelay = 0.6f;
         // ------ Base mobile attributes ------
 
         protected override void Start()
@@ -26,6 +26,7 @@ namespace AllMobiles
 
             if (other.gameObject.tag == "Player")
             {
+                this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
                 playerTargets = GameObject.FindGameObjectsWithTag("Player");
 
                 foreach (GameObject target in playerTargets)
@@ -59,12 +60,13 @@ namespace AllMobiles
 
         IEnumerator CleanUp()
         {
+            yield return new WaitForSeconds(2.0f);
+
             foreach (GameObject target in playerTargets)
             {
                 target.GetComponent<BoxCollider>().isTrigger = false;
                 target.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
             }
-            yield return new WaitForSeconds(2.0f);
             Destroy(gameObject, 2.0f);
         }
     }
