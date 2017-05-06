@@ -56,6 +56,8 @@ namespace AllMobiles
         {
             col = GetComponent<Collider>();
             healthBar = GetComponent<Health>();
+            if(healthBar != null)
+                healthBar.Initialize();
         }
 
         // ------------ Setting Stats ------------

@@ -6,23 +6,23 @@ using UnityEngine.UI;
 public class Health : MonoBehaviour {
 
     //Health Stuff 
-    public Image healthBar;
+    public Slider healthBar;
     public float maxHp;
     public float currentHp;
     float hpBar;
 
     void Start()
     {
-        Initialize();
+        //Initialize();
     }
 
     void Update()
     {
         DeathCheck();
-        HealthBar(hpBar);
+        //HealthBar(hpBar);
     }
 
-    void Initialize()
+    public void Initialize()
     {
         maxHp = this.GetComponent<AllMobiles.Mobiles>().Health;
         currentHp = maxHp;
@@ -31,6 +31,7 @@ public class Health : MonoBehaviour {
 
     public void TakeDamage(float damage)
     {
+        Debug.Log("Damage taken: " + damage);
         currentHp -= damage;
 
         if (currentHp < 0)
@@ -43,7 +44,7 @@ public class Health : MonoBehaviour {
 
     void HealthBar(float health)
     {
-        healthBar.fillAmount = (Mathf.Lerp(healthBar.fillAmount, health, 0.2f));
+        healthBar.value = (Mathf.Lerp(healthBar.value, health, 0.2f));
     }
 
     void DeathCheck()

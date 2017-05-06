@@ -22,7 +22,7 @@ namespace AllMobiles
         // Use this for initialization
         protected override void Start()
         {
-            base.Start();
+          
             // Will have to make a proper spawn location once models are implemented
             AmmoSpawn = gunTransform;
 
@@ -33,6 +33,8 @@ namespace AllMobiles
             ProjectileMass = bProjectileMass;
 
             Force = 100.0f;
+
+            base.Start();
         }
 
         // Update is called once per frame
