@@ -107,11 +107,9 @@ public class GameMode : MonoBehaviour
     {
         mainCam.FollowTarget(players[index].transform);
         players[index].Activate();
-<<<<<<< HEAD
-    
-=======
+
         currentPlayer = players[index];
         abilitiesUI.SetMobile(currentPlayer.GetComponent<AllMobiles.Mobiles>());
->>>>>>> origin/master
+
     }
 }
