@@ -67,6 +67,11 @@ public class ControllerScript : MonoBehaviour
         health = GetComponent<Health>();
     }
 
+    private void OnDestroy()
+    {
+        GameMaster.gameMode.RemovePlayer(this);
+    }
+
     /// <summary>
     /// Change this controller to have the appropriate mobile type
     /// </summary>
