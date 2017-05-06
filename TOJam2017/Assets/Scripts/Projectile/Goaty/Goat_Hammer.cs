@@ -18,11 +18,14 @@ namespace AllMobiles
         // Use this for initialization
         protected override void Start()
         {
-            babyGoat = GameObject.Find("babyGoat(Clone)");
         }
 
         void Update()
         {
+            if (!babyGoatStart)
+            {
+                babyGoat = GameObject.Find("babyGoat(Clone)");
+            }
             if (babyGoatStart)
             {
                 babyGoat.transform.position = Vector2.MoveTowards(babyGoat.transform.position, this.transform.position, 0.02f);

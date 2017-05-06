@@ -13,13 +13,8 @@ namespace AllMobiles
         // ------ Base mobile attributes ------
         private int bDamage = 10;
 
-        private float stampedeDelay = 0.6f;
+        private float stampedeDelay = 0.5f;
         // ------ Base mobile attributes ------
-
-        protected override void Start()
-        {
-            
-        }
 
         void OnCollisionEnter(Collision other)
         {
@@ -61,14 +56,14 @@ namespace AllMobiles
         IEnumerator CleanUp()
         {
             yield return new WaitForSeconds(2.0f);
-
+            
             foreach (GameObject target in playerTargets)
             {
                 target.GetComponent<BoxCollider>().isTrigger = false;
                 target.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
             }
-            Destroy(gameObject);
             Destroy(hammerGoat.gameObject);
+            Destroy(gameObject);
         }
     }
 }

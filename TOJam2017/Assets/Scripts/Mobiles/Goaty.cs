@@ -76,7 +76,7 @@ namespace AllMobiles
 
         IEnumerator BabyGoat()
         {
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(2.0f);
             InstEffects("Goaty/Attack", "babyGoat", this.transform);
         }
     }

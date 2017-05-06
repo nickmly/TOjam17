@@ -23,10 +23,14 @@ namespace AllMobiles
 
         void Update()
         {
+            if (!babyGoat)
+                Destroy(gameObject);
+
             if (beginStampede)
             {
                 this.transform.position = Vector2.MoveTowards(this.transform.position, babyGoat.transform.position, 0.1f);
             }
+           
         }
 
         void OnCollisionEnter(Collision other)
