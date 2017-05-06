@@ -6,6 +6,12 @@ public class ControllerScript : MonoBehaviour
 {
 
     /// <summary>
+    /// Transform for the gun.
+    /// </summary>
+    [SerializeField]
+    Transform gunTransform;
+
+    /// <summary>
     /// Rigidbody component attached to character
     /// </summary>
     Rigidbody rb;
@@ -49,6 +55,29 @@ public class ControllerScript : MonoBehaviour
     /// </summary>
     bool hasShot = false;
 
+    void Awake()
+    {
+        
+    }
+
+    /// <summary>
+    /// Change this controller to have the appropriate mobile type
+    /// </summary>
+    void AssignMobileType()
+    {
+        switch (GameMaster.mobileTypes[playerID])
+        {            
+            case GameMaster.MobileType.Skitty:
+                Skitty skitty = gameObject.AddComponent<Skitty>();
+                skitty.gunTransform = gunTransform;
+                break;
+            case GameMaster.MobileType.Goaty:
+                Goaty goaty = gameObject.AddComponent<Goaty>();
+                goaty.gunTransform = gunTransform;
+                break;
+        }
+    }
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -56,6 +85,7 @@ public class ControllerScript : MonoBehaviour
         mainCam = Camera.main.GetComponent<CameraMovement>();
         powerBar = GameObject.FindObjectOfType<PowerBar>();
         healthAndStamina = GetComponent<HealthAndStamina>();
+        AssignMobileType();
     }
 
     void Update()
@@ -73,6 +103,7 @@ public class ControllerScript : MonoBehaviour
     public void Activate()
     {
         hasShot = false;
+        healthAndStamina.ResetStamina();
     }
 
     /// <summary>

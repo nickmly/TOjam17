@@ -34,7 +34,7 @@ public class GameMode : MonoBehaviour
     /// </summary>
     void InitGame()
     {
-       // playerCount = GameMaster.playerCount; // TODO: UNCOMMENT THIS, just for testing purposes it is left out
+        playerCount = GameMaster.playerCount; // TODO: UNCOMMENT THIS, just for testing purposes it is left out
         SpawnAllPlayers();
         mainCam.FollowTarget(players[currentPlayerTurn].transform);
     }

@@ -17,8 +17,7 @@ namespace AllMobiles
         private int bProjectileMass = 5;
         // ------ Base mobile attributes ------
 
-        [SerializeField]
-        Transform gunTransform;
+        public Transform gunTransform;
 
         // Use this for initialization
         protected override void Start()
