@@ -6,17 +6,29 @@ namespace AllMobiles
 {
     public class Hay_Effect : Goaty
     {
+        GameObject player;
 
-        // Use this for initialization
-        protected override void Start()
+        // ------ Base mobile attributes ------
+        private float defaultImpaired = 1.0f;
+        private float impairment = 0.4f;
+        // ------ Base mobile attributes ------
+
+        void OnTriggerEnter(Collider other)
         {
-
+            if (other.tag == "Player")
+            {
+                player = other.gameObject;
+                player.GetComponent<ControllerScript>().speedImpairment = impairment;
+            }
         }
 
-        // Update is called once per frame
-        void Update()
+        void OnTriggerExit(Collider other)
         {
-
+            if (other.tag == "Player")
+            {
+                player = other.gameObject;
+                player.GetComponent<ControllerScript>().speedImpairment = defaultImpaired;
+            }
         }
     }
 }

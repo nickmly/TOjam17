@@ -46,6 +46,11 @@ public class ControllerScript : MonoBehaviour
     float moveSpeed = 15.0f;
 
     /// <summary>
+    /// Value to impair the speed of mobile
+    /// </summary>
+    public float speedImpairment = 1.0f;
+
+    /// <summary>
     /// Identifier for player to distinguish between different players
     /// </summary>
     public int playerID = 0;
@@ -178,7 +183,7 @@ public class ControllerScript : MonoBehaviour
     void HandleMovement()
     {
         if(stamina.CanMove())
-            transform.Translate(transform.right * xAxisValue * moveSpeed);
+            transform.Translate(transform.right * xAxisValue * (moveSpeed * speedImpairment));
     }
 
     public void SetID(int _id)
