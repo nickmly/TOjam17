@@ -65,7 +65,7 @@ namespace AllMobiles
                 target.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
             }
             yield return new WaitForSeconds(2.0f);
-            Destroy(gameObject, 4.0f);
+            Destroy(gameObject, 2.0f);
         }
     }
 }

@@ -11,19 +11,21 @@ namespace AllMobiles
 
         // ------ Base mobile attributes ------
         private int bDamage = 10;
-        public bool beginStampede = true;
+        public bool beginStampede;
         // ------ Base mobile attributes ------
 
         protected override void Start()
         {
+            beginStampede = true;
             babyGoat = GameObject.Find("babyGoat(Clone)");
+            Destroy(gameObject, 10.0f);
         }
 
         void Update()
         {
             if (beginStampede)
             {
-                this.transform.position = Vector2.MoveTowards(this.transform.position, babyGoat.transform.position, 0.05f);
+                this.transform.position = Vector2.MoveTowards(this.transform.position, babyGoat.transform.position, 0.1f);
             }
         }
 
