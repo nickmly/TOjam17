@@ -155,7 +155,7 @@ namespace AllMobiles
 
         public virtual void InstEffects(string folder, string effect)
         {
-            GameObject attackEffect = Instantiate(Resources.Load("MobileModels/" + folder + "/" + effect), ammoSpawn.position, ammoSpawn.rotation) as GameObject;
+            GameObject attackEffect = Instantiate(Resources.Load("MobileModels/" + folder + "/" + effect), ProjectilePosition.position, Quaternion.identity) as GameObject;
         }
 
         public virtual void TakeDamage(int damageTaken)
