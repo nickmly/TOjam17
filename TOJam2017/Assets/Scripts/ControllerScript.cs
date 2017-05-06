@@ -63,7 +63,8 @@ public class ControllerScript : MonoBehaviour
 
     void Awake()
     {
-        
+        stamina = FindObjectOfType<Stamina>();
+        health = GetComponent<Health>();
     }
 
     /// <summary>
@@ -91,8 +92,7 @@ public class ControllerScript : MonoBehaviour
         mobile = GetComponent<Mobiles>();
         mainCam = Camera.main.GetComponent<CameraMovement>();
         powerBar = FindObjectOfType<PowerBar>();
-        stamina = FindObjectOfType<Stamina>();
-        health = GetComponent<Health>();
+       
 
     }
 
@@ -111,7 +111,7 @@ public class ControllerScript : MonoBehaviour
     public void Activate()
     {
         hasShot = false;
-        stamina.ResetStamina();
+        stamina.ResetStamina(this);
     }
 
     /// <summary>
@@ -168,7 +168,6 @@ public class ControllerScript : MonoBehaviour
     {
         mobile.AttackShot(powerBar.GetValue());
         hasShot = true;
-        stamina.ResetStamina();
 
         //TEST SWITCHING TURNS
         GameMaster.gameMode.AdvanceTurn();

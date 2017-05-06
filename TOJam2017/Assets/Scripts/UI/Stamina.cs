@@ -33,7 +33,6 @@ public class Stamina : MonoBehaviour {
 
     void Initialize()
     {
-        player = GetComponent<ControllerScript>();
         //sets default to full
         staminaBarValue = 10f;
 
@@ -61,8 +60,9 @@ public class Stamina : MonoBehaviour {
             canMove = false;
     }
 
-    public void ResetStamina()
+    public void ResetStamina(ControllerScript _player)
     {
+        player = _player;
         staminaBarValue = 10f;
         staminaBar.value = staminaBarValue;
     }
