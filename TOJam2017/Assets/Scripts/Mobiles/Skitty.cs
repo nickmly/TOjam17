@@ -15,6 +15,9 @@ namespace AllMobiles
         private int bArmour = 25;
         private int bMobileMass = 10;
         private int bProjectileMass = 5;
+
+        private bool canShoot = false;
+        private float shootDelay = 3;
         // ------ Base mobile attributes ------
 
         [SerializeField]
@@ -39,7 +42,15 @@ namespace AllMobiles
         // Update is called once per frame
         void Update()
         {
-
+            if (canShoot)
+            {
+                shootDelay -= Time.deltaTime;
+                if (shootDelay < 0)
+                {
+                    shootDelay = 3;
+                    canShoot = false;
+                }
+            }
         }
 
         public override void AttackShot(float power)
@@ -49,8 +60,15 @@ namespace AllMobiles
             switch (attack)
             {
                 case 0:
-                    Shoot("Skitty/Attack", "ammo1", power);
-                    Debug.Log("Attack 1");
+                    for (int i = 0; i < 3; i++)
+                    {
+                        canShoot = true;
+                        if (canShoot)
+                        {
+                            Shoot("Skitty/Attack", "ammo1", power);
+                        }
+                        Debug.Log("Attack 1");
+                    }
                     break;
                 case 1:
                     Shoot("skitty/attack", "ammo2", power);
