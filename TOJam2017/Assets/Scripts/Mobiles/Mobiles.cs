@@ -14,6 +14,11 @@ namespace AllMobiles
         // ------------ Components ------------
         private Collider col;
         // ------------ Components ------------
+
+        // ------------ Attack Effect Prefabs and Spawn Location ------------
+        private GameObject attackEffect;
+        // ------------ Attack Effect Prefabs and Spawn Location ------------
+
         // ------------ Ammo Prefabs and Spawn Location ------------
         private GameObject ammoPref;
         private Transform ammoSpawn;
@@ -138,10 +143,7 @@ namespace AllMobiles
         // ------------ Getters and Setters ------------
 
         // ------------ Functionalities ------------
-        public virtual void AttackShot(float power)
-        {
-            
-        }
+        public virtual void AttackShot(float power){}
 
         public virtual void Shoot(string folder, string ammo, float power)
         {
@@ -149,6 +151,11 @@ namespace AllMobiles
             Rigidbody newAmmoRb = newAmmo.GetComponent<Rigidbody>();
             newAmmoRb.AddForce(ammoSpawn.transform.up * Force * power);
             Physics.IgnoreCollision(newAmmo.GetComponent<Collider>(), col);
+        }
+
+        public virtual void InstEffects(string folder, string effect)
+        {
+            GameObject attackEffect = Instantiate(Resources.Load("MobileModels/" + folder + "/" + effect), ammoSpawn.position, ammoSpawn.rotation) as GameObject;
         }
 
         public virtual void TakeDamage(int damageTaken)

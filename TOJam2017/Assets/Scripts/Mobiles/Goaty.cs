@@ -33,7 +33,7 @@ namespace AllMobiles
             MobileMass = bMobileMass;
             ProjectileMass = bProjectileMass;
 
-            Force = 500.0f;
+            Force = 100.0f;
         }
 
         // Update is called once per frame
@@ -42,22 +42,22 @@ namespace AllMobiles
 
         }
 
-        public override void AttackShot()
+        public override void AttackShot(float power)
         {
-            base.AttackShot();
+            base.AttackShot(power);
 
             switch (attack)
             {
                 case 0:
-                    Shoot("Goaty/Attack", "ammo1");
+                    Shoot("Goaty/Attack", "ammo1", power);
                     Debug.Log("Attack 1");
                     break;
                 case 1:
-                    Shoot("Goaty/Attack", "ammo2");
+                    Shoot("Goaty/Attack", "ammo2", power);
                     Debug.Log("Attack 2");
                     break;
                 case 2:
-                    Shoot("Goaty/Attack", "ammo3");
+                    Shoot("Goaty/Attack", "ammo3", power);
                     Debug.Log("Attack 3");
                     break;
                 default:

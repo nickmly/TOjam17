@@ -47,7 +47,7 @@ namespace AllMobiles
 
             if (other.gameObject.tag == "Map")
             {
-                Shoot("Goaty/Attack", "hay");
+                InstEffects("Goaty/Attack", "hay");
                 Destroy(gameObject, 1.0f);
             }
         }
