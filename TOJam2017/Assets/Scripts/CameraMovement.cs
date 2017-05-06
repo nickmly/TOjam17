@@ -5,31 +5,52 @@ public class CameraMovement : MonoBehaviour
 
     //MemberVariables
     private bool isFollowing;
+    public bool notSkitty;
+    public bool skitty1;
     float screenWidth, screenHeight;
     float moveSpeed = 5f;
     Vector3 position; // center of screen
+    Quaternion rotation;
+    
                       // float FOV;
-
+    Transform followTransform;
 
     private void Awake()
     {
+        isFollowing = false;
+        notSkitty = false;
     }
     // Use this for initialization
     void Start()
     {
         position = transform.position;
+        rotation = transform.rotation;
         screenWidth = Screen.width;
         screenHeight = Screen.height;
+       
     }
-
     // Update is called once per frame
     void Update()
     {
+        
         if (!isFollowing)
         {
             HandleScrollMovement();
-            transform.position = position;
         }
+        else
+        {
+            if (followTransform != null)
+            {
+                position = followTransform.position;
+                position.z = -10;
+            }
+            else
+            {
+                isFollowing = false;
+            }
+        }
+        transform.position = position;
+        transform.rotation = rotation;
     }
     void HandleScrollMovement()
     {
@@ -62,18 +83,25 @@ public class CameraMovement : MonoBehaviour
 
     public void FollowTarget(Transform transformToFollow)
     {
-        SnapToPosition(transformToFollow.position);                             //Snap to current target position
-        isFollowing = true;                                                     //stop updating the edge camera movement
-        transform.localPosition = new Vector3(                                          
-            transform.localPosition.x, transform.localPosition.y, -10.0f);       //set local z to -10 so we doing end up viewing from 0 depth  
-        transform.parent = transformToFollow;                                   //Set parent transform
-      
+        isFollowing = true;
+
+        if (transformToFollow != null)
+        {
+       
+            SnapToPosition(transformToFollow.position);
+            rotation = transformToFollow.rotation;
+            followTransform = transformToFollow;
+        }
+        else
+        {
+            StopFollowing();
+            followTransform = null;
+        }
     }
     public void StopFollowing()
     {
-        transform.parent = transform;   // set parent values to this 
-        transform.parent = null;        // remove parent
         isFollowing = false;            // start updating camera edge movement.
+       // followTransform = null;
     }
 
     public void SnapToPosition(Vector3 targetPosition)

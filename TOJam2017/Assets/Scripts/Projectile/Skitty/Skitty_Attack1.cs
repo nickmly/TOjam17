@@ -12,6 +12,7 @@ namespace AllMobiles
         // ------ Base mobile attributes ------
         private int bProjectileMass = 5;
         private int bDamage = 15;
+        private bool firstCollision;
         // ------ Base mobile attributes ------
 
         // Use this for initialization
@@ -35,20 +36,21 @@ namespace AllMobiles
         {
             //Debug.Log("Hit");
             //Destroy(gameObject);
-
+ 
             if (other.gameObject.tag == "Player")
             {
                 player = other.gameObject;
 
                 player.GetComponent<AllMobiles.Mobiles>().TakeDamage(bDamage);
-
                 Destroy(gameObject, 0.0f);
+
             }
 
             if (other.gameObject.tag == "Map")
-            {
+            { 
                 Destroy(gameObject, 1.0f);
             }
+
         }
     }
 }

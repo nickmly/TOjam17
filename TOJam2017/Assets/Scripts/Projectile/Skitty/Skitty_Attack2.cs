@@ -49,6 +49,7 @@ namespace AllMobiles
             {
                 Destroy(gameObject, 1.0f);
             }
+
         }
 
         /*

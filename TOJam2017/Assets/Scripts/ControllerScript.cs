@@ -172,7 +172,7 @@ public class ControllerScript : MonoBehaviour
         //TEST SWITCHING TURNS
         GameMaster.gameMode.AdvanceTurn();
         //
-
+        
         Debug.Log("Shooting");
     }
 

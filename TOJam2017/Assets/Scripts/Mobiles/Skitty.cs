@@ -77,9 +77,22 @@ namespace AllMobiles
         {
             for (int i = 0; i < 4; i++)
             {
+
+                ///Garbage code I will be changing this //Chenzzzz
+                ///it simply focuses only on the first projectile and ignores the rest 
+                if(i == 0)
+                {
+                    Camera.main.GetComponent<CameraMovement>().notSkitty = true;
+                }
+                else
+                {
+                    Camera.main.GetComponent<CameraMovement>().notSkitty = false;
+                }
+
                 Shoot("Skitty/Attack", "ammo1", power);
-                yield return new WaitForSeconds(shootDelay);
+                yield return new WaitForSeconds(shootDelay);   
             }
+            
         }
     }
 }

@@ -155,6 +155,14 @@ namespace AllMobiles
             Rigidbody newAmmoRb = newAmmo.GetComponent<Rigidbody>();
             newAmmoRb.AddForce(ammoSpawn.transform.up * Force * power);
             Physics.IgnoreCollision(newAmmo.GetComponent<Collider>(), col);
+
+            //check if skitty multi shot, only focus on first "notskitty" will be set to false after the first projectile is shot 
+            //remains false for the rest of the attacks... 
+            if (Camera.main.GetComponent<CameraMovement>().notSkitty)
+            {
+                Camera.main.GetComponent<CameraMovement>().FollowTarget(newAmmoRb.transform);
+            }
+            
         }
 
         public virtual void InstEffects(string folder, string effect, Transform spawnPosition)

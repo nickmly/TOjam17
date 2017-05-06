@@ -79,7 +79,7 @@ public class GameMode : MonoBehaviour
     /// </summary>
     public void AdvanceTurn()
     {
-        Invoke("UpdateTurn", 1.0f); // delay this function by a second
+        Invoke("UpdateTurn", 3.0f); // delay this function by a second
     }
 
     void UpdateTurn()
@@ -104,5 +104,6 @@ public class GameMode : MonoBehaviour
     {
         mainCam.FollowTarget(players[index].transform);
         players[index].Activate();
+    
     }
 }
