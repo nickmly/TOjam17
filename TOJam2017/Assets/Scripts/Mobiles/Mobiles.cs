@@ -162,7 +162,7 @@ namespace AllMobiles
             {
                 Camera.main.GetComponent<CameraMovement>().FollowTarget(newAmmoRb.transform);
             }
-            
+            Camera.main.GetComponent<CameraMovement>().notSkitty = true;
         }
 
         public virtual void InstEffects(string folder, string effect, Transform spawnPosition)
