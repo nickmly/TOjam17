@@ -45,7 +45,8 @@ public class PowerBar : MonoBehaviour
     }
 
     void SetPower()
-    {        
+    {      
+        //Racks up the power for the charge meter  
         powerBarValue += powerBarThreshhold * Time.deltaTime;
         powerBarValue = Mathf.Clamp(powerBarValue, powerBar.minValue, powerBar.maxValue);
       
@@ -55,6 +56,7 @@ public class PowerBar : MonoBehaviour
 
     void Shot()
     {
+        //resets the charge meter
         didShoot = true;
         powerBarValue = 0f;
         powerBar.value = powerBarValue;
