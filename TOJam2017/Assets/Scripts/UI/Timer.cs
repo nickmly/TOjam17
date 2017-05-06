@@ -7,7 +7,7 @@ public class Timer : MonoBehaviour {
 
     public Text counterText;
 
-    public float seconds = 45f;
+    private float seconds = 25f;
 
     void Start()
     {
@@ -19,19 +19,37 @@ public class Timer : MonoBehaviour {
         //seconds -= (int)Time.deltaTime;
         seconds -= (Time.deltaTime);
         counterText.text = seconds.ToString("00");
+        ColourMeRad();
     }
 
     void ResetTime()
     {
-        seconds = 45f;
+        seconds = 25f;
     }
 
     void RanOutOfTime()
     {
-        if (seconds == 0)
+        if (seconds <= 0)
         {
             GameMaster.gameMode.AdvanceTurn();
         }
+    }
+
+    void ColourMeRad()
+    {
+        if(seconds > 19f)
+        {
+            counterText.color = Color.green;
+        }
+         else if(seconds > 9f) { 
+       
+            counterText.color = Color.yellow;
+        }
+        else
+        {
+            counterText.color = Color.red;
+        }
+
     }
 
 }
