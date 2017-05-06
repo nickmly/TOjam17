@@ -67,7 +67,8 @@ namespace AllMobiles
                 target.GetComponent<BoxCollider>().isTrigger = false;
                 target.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
             }
-            Destroy(gameObject, 2.0f);
+            Destroy(gameObject);
+            Destroy(hammerGoat.gameObject);
         }
     }
 }
