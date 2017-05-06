@@ -24,7 +24,7 @@ public class ControllerScript : MonoBehaviour
     /// <summary>
     /// The power bar in the HUD
     /// </summary>
-    PowerBar powerBar;
+    public PowerBar powerBar;
 
     /// <summary>
     /// Health and stamina in HUD
@@ -80,12 +80,13 @@ public class ControllerScript : MonoBehaviour
 
     void Start()
     {
+        AssignMobileType();
         rb = GetComponent<Rigidbody>();
         mobile = GetComponent<Mobiles>();
         mainCam = Camera.main.GetComponent<CameraMovement>();
-        powerBar = GameObject.FindObjectOfType<PowerBar>();
+        powerBar = FindObjectOfType<PowerBar>();
         healthAndStamina = GetComponent<HealthAndStamina>();
-        AssignMobileType();
+
     }
 
     void Update()
