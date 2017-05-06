@@ -20,6 +20,11 @@ public class ControllerScript : MonoBehaviour
     /// </summary>
     PowerBar powerBar;
 
+    /// <summary>
+    /// Health and stamina in HUD
+    /// </summary>
+    HealthAndStamina healthAndStamina;
+
     CameraMovement mainCam;
 
     /// <summary>
@@ -50,6 +55,7 @@ public class ControllerScript : MonoBehaviour
         mobile = GetComponent<Mobiles>();
         mainCam = Camera.main.GetComponent<CameraMovement>();
         powerBar = GameObject.FindObjectOfType<PowerBar>();
+        healthAndStamina = GetComponent<HealthAndStamina>();
     }
 
     void Update()
@@ -113,15 +119,23 @@ public class ControllerScript : MonoBehaviour
             // Checking to see if it will spawn different ammo
             if (Input.GetKeyUp(KeyCode.Space))
             {
-                mobile.AttackShot(powerBar.GetValue());
-                hasShot = true;
-                //TEST SWITCHING TURNS
-                GameMaster.gameMode.AdvanceTurn();
-                //
-                Debug.Log("Shooting");
+                Shoot();
             }
         }
 
+    }
+
+    void Shoot()
+    {
+        mobile.AttackShot(powerBar.GetValue());
+        hasShot = true;
+        healthAndStamina.ResetStamina();
+
+        //TEST SWITCHING TURNS
+        GameMaster.gameMode.AdvanceTurn();
+        //
+
+        Debug.Log("Shooting");
     }
 
     /// <summary>
@@ -129,7 +143,8 @@ public class ControllerScript : MonoBehaviour
     /// </summary>
     void HandleMovement()
     {
-        transform.Translate(transform.right * xAxisValue * moveSpeed);
+        if(healthAndStamina.CanMove())
+            transform.Translate(transform.right * xAxisValue * moveSpeed);
     }
 
     public void SetID(int _id)
@@ -144,4 +159,10 @@ public class ControllerScript : MonoBehaviour
     {
         return GameMaster.gameMode.currentPlayerTurn == playerID;
     }
+
+    public bool IsMoving()
+    {
+        return Mathf.Abs(xAxisValue) > 0;
+    }
+
 }

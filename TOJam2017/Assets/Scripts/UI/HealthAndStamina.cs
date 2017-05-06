@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class HealthAndStamina : MonoBehaviour {
 
+    //Player Component
+    ControllerScript player;
+
     //Health Stuff 
     public Slider healthBar;
     //not used private float healthBarThreshhold = 10f;
@@ -28,9 +31,8 @@ public class HealthAndStamina : MonoBehaviour {
     {
         //stamina stuff--------------------------------------------
         MoveCheck();
-        ShotCheck();
 
-        if (canMove &&  Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
+        if (canMove && player.IsMoving())
         {
             DrainStamina();
         }
@@ -40,13 +42,7 @@ public class HealthAndStamina : MonoBehaviour {
 	
     void Initialize()
     {
-        //Finds our sliders for the health and stamina UI sliders respectively 
-        /*---------------------------NOTE------------------------------------------
-        Might be an issue with find since there will be multiple 
-        instances of the same unit? 
-        ---------------------------------------------------------------------*/
-        healthBar = GameObject.Find("Health").GetComponent<Slider>();
-        staminaBar = GameObject.Find("Stamina").GetComponent<Slider>();
+        player = GetComponent<ControllerScript>();
 
         //Sets both the defaults of the stats to full
         healthBarValue = 10f;
@@ -72,7 +68,6 @@ public class HealthAndStamina : MonoBehaviour {
     }
 
     //only able to move if the unit has stamina
-    //**TO DO** NEEDS TO BE ENABLED/SYNCHED IN MOBILES SCRIPT
     void MoveCheck()
     {
         if (staminaBarValue > 0f)
@@ -81,13 +76,12 @@ public class HealthAndStamina : MonoBehaviour {
             canMove = false;
     }
 
-    void ShotCheck()
+    public void ResetStamina()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            staminaBarValue = 10f;
-        }
-    }
+        staminaBarValue = 10f;
+        staminaBar.value = staminaBarValue;
+    } 
+    
     //=================================STAMINA TINGS END =============================================
 
     //=================================HEALTH TINGS=============================================
@@ -111,4 +105,8 @@ public class HealthAndStamina : MonoBehaviour {
         }
     }
 
+    public bool CanMove()
+    {
+        return canMove;
+    }
 }
