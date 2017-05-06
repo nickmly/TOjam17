@@ -11,7 +11,7 @@ public class GameMode : MonoBehaviour
 
     // Players
     public int playerCount = 0;
-    List<ControllerScript> players = new List<ControllerScript>();
+    public List<ControllerScript> players = new List<ControllerScript>();
     public ControllerScript currentPlayer;
     public int currentPlayerTurn = 0;
     GameObject playerPrefab;
@@ -75,6 +75,16 @@ public class GameMode : MonoBehaviour
     public void AddPlayer(ControllerScript _player)
     {
         players.Add(_player);
+    }
+
+    public void RemovePlayer(ControllerScript _player)
+    {
+        int tempID = _player.playerID;
+        players.Remove(_player);
+        for(int i = tempID; i < players.Count; i++)
+        {
+            players[i].SetID(players[i].playerID - 1);
+        }
     }
 
     /// <summary>
