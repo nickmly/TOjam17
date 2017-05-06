@@ -12,22 +12,26 @@ public class GameMode : MonoBehaviour
     // Players
     public int playerCount = 0;
     List<ControllerScript> players = new List<ControllerScript>();
+    public ControllerScript currentPlayer;
     public int currentPlayerTurn = 0;
-
     GameObject playerPrefab;
 
     public Transform[] spawnPoints;
     // 
 
+    //UI
+    AbilitiesUI abilitiesUI;
+    //
+
     void Awake()
     {
         GameMaster.gameMode = this;
         mainCam = Camera.main.GetComponent<CameraMovement>();
+        abilitiesUI = FindObjectOfType<AbilitiesUI>();
 
         playerPrefab = Resources.Load<GameObject>("Prefabs/Player");
         InitGame();
     }
-
 
     /// <summary>
     /// Called at the start of every game
@@ -50,7 +54,6 @@ public class GameMode : MonoBehaviour
             ControllerScript cs = newPlayer.GetComponent<ControllerScript>();
             cs.SetID(players.Count);
             players.Add(newPlayer.GetComponent<ControllerScript>());
-
         }
     }
 
@@ -104,6 +107,11 @@ public class GameMode : MonoBehaviour
     {
         mainCam.FollowTarget(players[index].transform);
         players[index].Activate();
+<<<<<<< HEAD
     
+=======
+        currentPlayer = players[index];
+        abilitiesUI.SetMobile(currentPlayer.GetComponent<AllMobiles.Mobiles>());
+>>>>>>> origin/master
     }
 }

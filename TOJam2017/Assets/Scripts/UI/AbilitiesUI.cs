@@ -14,17 +14,24 @@ public class AbilitiesUI : MonoBehaviour {
 
     public bool skill1Active, skill2Active, specialActive;
 
-
     void Start()
     {
-        mobile = GetComponent<Mobiles>();
+        mobile = GameMaster.gameMode.currentPlayer.GetComponent<Mobiles>();
+    }
+    
+    /// <summary>
+    /// Called from gamemode class every time you switch player
+    /// </summary>
+    /// <param name="_mobile"></param>
+    public void SetMobile(Mobiles _mobile)
+    {
+        mobile = _mobile;
     }
 
     void Update()
     {
         ActiveCheck();
     }
-
 
     void ActiveCheck()
     {
@@ -59,8 +66,7 @@ public class AbilitiesUI : MonoBehaviour {
             specialActive = true;
             ResetColors();
             special.GetComponent<Image>().color = Color.cyan;
-        }
-        
+        }        
     }
 
     void ResetColors()
