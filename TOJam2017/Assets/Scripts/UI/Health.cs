@@ -13,13 +13,13 @@ public class Health : MonoBehaviour {
 
     void Start()
     {
-        //Initialize();
+
     }
 
     void Update()
     {
         DeathCheck();
-        //HealthBar(hpBar);
+        HealthBar(hpBar);
     }
 
     public void Initialize()
