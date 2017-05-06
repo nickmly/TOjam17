@@ -9,6 +9,7 @@ namespace AllMobiles
     {
         GameObject player;
         GameObject babyGoat;
+        public Transform stampedeSpawn;
 
         // ------ Base mobile attributes ------
         private int bDamage = 10;
@@ -48,6 +49,8 @@ namespace AllMobiles
             if (other.gameObject.name == "babyGoat(Clone)")
             {
                 babyGoatStart = false;
+                Destroy(other.gameObject);
+                Destroy(gameObject);
             }
         }
     }

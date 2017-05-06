@@ -25,7 +25,6 @@ namespace AllMobiles
           
             // Will have to make a proper spawn location once models are implemented
             AmmoSpawn = gunTransform;
-
             //MobilePosition; (random location to be spawned on the map)
             Health = bHealth;
             Armour = bArmour;
@@ -58,8 +57,8 @@ namespace AllMobiles
                     Debug.Log("Attack 2");
                     break;
                 case 2:
-                    InstEffects("Goaty/Attack", "babyGoat", this.transform);
                     Shoot("Goaty/Attack", "ammo3", power);
+                    InstEffects("Goaty/Attack", "babyGoat", this.transform);
                     Debug.Log("Attack 3");
                     break;
                 default:

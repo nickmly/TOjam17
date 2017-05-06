@@ -11,7 +11,7 @@ namespace AllMobiles
 
         // ------ Base mobile attributes ------
         private int bDamage = 10;
-        public bool beginStampede = false;
+        public bool beginStampede = true;
         // ------ Base mobile attributes ------
 
         protected override void Start()
