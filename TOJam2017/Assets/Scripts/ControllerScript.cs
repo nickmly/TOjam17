@@ -119,6 +119,13 @@ public class ControllerScript : MonoBehaviour
         
     }
 
+    public void SetCollidersToTriggers(bool _toggle)
+    {
+        skittyCollider.isTrigger = _toggle;
+        goatyCollider.isTrigger = _toggle;
+        spuppyCollider.isTrigger = _toggle;
+    }
+
     void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
