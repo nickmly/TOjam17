@@ -157,7 +157,7 @@ public class ControllerScript : MonoBehaviour
     {
         hasShot = false;
         stamina.ResetStamina(this);
-        Debug.Log("ACTIVATE");
+        GameMaster.gameMode.abilitiesUI.mobile = mobile;
     }
 
     /// <summary>

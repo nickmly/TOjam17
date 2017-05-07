@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using AllMobiles;
 
 public class GameMode : MonoBehaviour
@@ -15,6 +17,8 @@ public class GameMode : MonoBehaviour
     CameraMovement mainCam;
     //
 
+
+
     // Players
     public int playerCount = 0;
     public List<ControllerScript> players = new List<ControllerScript>();
@@ -27,6 +31,7 @@ public class GameMode : MonoBehaviour
 
     //UI
     public AbilitiesUI abilitiesUI;
+    public Text winText;
     //
 
     void Awake()
@@ -74,6 +79,16 @@ public class GameMode : MonoBehaviour
     {
         if (abilitiesUI.mobile == null)
             abilitiesUI.mobile = players[currentPlayerTurn].GetComponent<Mobiles>();
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("Main");
+        }
+
+        if (players.Count == 1)
+        {
+            winText.enabled = true;
+        }
     }
 
     /// <summary>
@@ -89,7 +104,7 @@ public class GameMode : MonoBehaviour
     {
         int tempID = _player.playerID;
         players.Remove(_player);
-        for(int i = tempID; i < players.Count; i++)
+        for (int i = tempID; i < players.Count; i++)
         {
             players[i].SetID(players[i].playerID - 1);
         }
@@ -126,7 +141,7 @@ public class GameMode : MonoBehaviour
         mainCam.FollowTarget(players[index].transform);
         players[index].Activate();
 
-        currentPlayer = players[index];        
+        currentPlayer = players[index];
         shotTimer.StartTimer();
     }
 }

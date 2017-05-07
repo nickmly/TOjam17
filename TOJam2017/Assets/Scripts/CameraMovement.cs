@@ -4,31 +4,31 @@ public class CameraMovement : MonoBehaviour
 {
 
     //MemberVariables
-    private float zoomFactor, zoomSpeed, minZoom, maxZoom;
-    private float MIN_X, MIN_Y, MIN_Z, MAX_X, MAX_Y, MAX_Z; //CONSTRAING VALUES
+    public float zoomFactor, zoomSpeed, minZoom, maxZoom;
+    public float MIN_X, MIN_Y, MAX_X, MAX_Y; //CONSTRAING VALUES
     private bool isFollowing;
     public bool notSkitty;
     public bool skitty1;
     float screenWidth, screenHeight;
-    float moveSpeed = 5f;
+    public float moveSpeed = 5f;
     Vector3 position; // center of screen
    
     Transform followTransform;
-
+    bool firstzoomAdjust;
     private void Awake()
     {
-        MIN_X = -16f;
-        MAX_X = 16f;
-        MIN_Y = -10.0f;
-        MAX_Y = 17.0f;
-        MIN_Z = -1000; // not used yet so 1000 to be safe
-        MAX_Z = 1000;
+        //MIN_X = -16f;
+        //MAX_X = 16f;
+        //MIN_Y = -10.0f;
+        //MAX_Y = 17.0f;
+        //MIN_Z = -1000; // not used yet so 1000 to be safe
+        //MAX_Z = 1000;
 
-        minZoom = 2.5f;
-        maxZoom = 15.0f;
-        zoomFactor = 10;
-        zoomSpeed = 5;
-
+        //minZoom = 2.5f;
+        //maxZoom = 15.0f;
+        //zoomFactor = 10;
+        //zoomSpeed = 5;
+        firstzoomAdjust = true;
         isFollowing = false;
         notSkitty = false;
     }
@@ -63,25 +63,51 @@ public class CameraMovement : MonoBehaviour
         HandleZoom();
         UpdateTransform();
     }
+
     void UpdateTransform()
     {
+
+
         transform.position = position;
         transform.position = new Vector3(
             Mathf.Clamp(position.x, MIN_X, MAX_X),
             Mathf.Clamp(position.y, MIN_Y, MAX_Y),
-            Mathf.Clamp(position.z, MIN_Z, MAX_Z)
+            Mathf.Clamp(position.z, -10, -10)
             );
     }
     void HandleZoom()
     {
         float scroll = Input.GetAxis("Mouse ScrollWheel");
+        float newOrtho = Camera.main.orthographicSize;
         if (scroll != 0.0f)
         {
             zoomFactor -= scroll * zoomSpeed;
-            zoomFactor = Mathf.Clamp(zoomFactor, minZoom, maxZoom);
+            zoomFactor = Mathf.Clamp(zoomFactor, minZoom, maxZoom -1);
         }
 
        Camera.main.orthographicSize = Mathf.MoveTowards(Camera.main.orthographicSize, zoomFactor, zoomSpeed * Time.deltaTime);
+       if(newOrtho != Camera.main.orthographicSize)
+        {
+            AdjustOrtho();
+            newOrtho = Camera.main.orthographicSize;
+        }
+        if (firstzoomAdjust)
+        {
+            AdjustOrtho();
+            newOrtho = Camera.main.orthographicSize;
+            firstzoomAdjust = false;
+        }
+    }
+    void AdjustOrtho()
+    {
+        float height = 2 * Camera.main.orthographicSize;
+        float width = height * Camera.main.aspect;
+
+        MIN_X = -50 + width/2;
+        MAX_X = 50 - width/2;
+        MIN_Y = -50 + height/2;
+        MAX_Y = 50 - height/2;
+        
     }
     void HandleScrollMovement()
     {
