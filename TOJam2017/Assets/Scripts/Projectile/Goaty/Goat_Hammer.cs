@@ -37,7 +37,7 @@ namespace AllMobiles
             }
         }
 
-        void OnCollisionEnter(Collision other)
+        void OnCollisionEnter2D(Collision2D other)
         {
             Debug.Log("Hit");
 
@@ -48,20 +48,20 @@ namespace AllMobiles
                 player.GetComponent<AllMobiles.Mobiles>().TakeDamage(bDamage);
 
                 this.transform.rotation = Quaternion.identity;
-                this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
-                this.GetComponent<BoxCollider>().isTrigger = true;
+                this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+                this.GetComponent<PolygonCollider2D>().isTrigger = true;
             }
 
             if (other.gameObject.tag == "Map")
             {
                 babyGoatStart = true;
                 this.transform.rotation = Quaternion.identity;
-                this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
-                this.GetComponent<BoxCollider>().isTrigger = true;
+                this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+                this.GetComponent<PolygonCollider2D>().isTrigger = true;
             }
         }
 
-        void OnTriggerEnter(Collider other)
+        void OnTriggerEnter2D(Collider2D other)
         {
             if (other.gameObject.name == "babyGoat(Clone)")
             {

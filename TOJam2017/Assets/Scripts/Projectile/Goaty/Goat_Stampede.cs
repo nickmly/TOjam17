@@ -40,7 +40,7 @@ namespace AllMobiles
            
         }
 
-        void OnCollisionEnter(Collision other)
+        void OnCollisionEnter2D(Collision2D other)
         {
             if (other.gameObject.tag == "DeadShot")
             {
@@ -53,7 +53,7 @@ namespace AllMobiles
             }
         }
 
-        void OnTriggerEnter(Collider other)
+        void OnTriggerEnter2D(Collider2D other)
         {
             if (other.gameObject.tag == "Player")
             {

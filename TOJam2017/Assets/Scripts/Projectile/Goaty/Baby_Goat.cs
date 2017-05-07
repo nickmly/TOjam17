@@ -27,17 +27,17 @@ namespace AllMobiles
         }
 
 
-        void OnCollisionEnter(Collision other)
+        void OnCollisionEnter2D(Collision2D other)
         {
 
             if (other.gameObject.tag == "Player")
             {
-                this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+                this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
 
                 foreach (GameObject target in playerTargets)
                 {
-                    target.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
-                    target.GetComponent<BoxCollider>().isTrigger = true;
+                    target.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+                    target.GetComponent<PolygonCollider2D>().isTrigger = true;
                 }
 
                 hammerGoat = GameObject.Find("goatHammer(Clone)");

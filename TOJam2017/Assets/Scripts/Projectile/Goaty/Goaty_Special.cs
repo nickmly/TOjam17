@@ -37,7 +37,7 @@ namespace AllMobiles
             babyGoat = GameObject.Find("babyGoat(Clone)");
         }
 
-        void OnCollisionEnter(Collision other)
+        void OnCollisionEnter2D(Collision2D other)
         {
             if (other.gameObject.tag == "Player" || other.gameObject.tag == "Map")
             {
@@ -52,8 +52,8 @@ namespace AllMobiles
 
                 foreach (GameObject target in playerTargets)
                 {
-                    target.GetComponent<BoxCollider>().isTrigger = false;
-                    target.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
+                    target.GetComponent<BoxCollider2D>().isTrigger = false;
+                    target.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
                 }
 
                 Destroy(babyGoat);

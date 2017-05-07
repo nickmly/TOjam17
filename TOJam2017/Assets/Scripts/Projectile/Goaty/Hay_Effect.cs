@@ -15,11 +15,11 @@ namespace AllMobiles
 
         protected override void Start()
         {
-            this.GetComponent<Rigidbody>().useGravity = true;
+            this.GetComponent<Rigidbody2D>().gravityScale = 1;
             Destroy(gameObject, 30.0f);
         }
 
-        void OnTriggerEnter(Collider other)
+        void OnTriggerEnter2D(Collider2D other)
         {
             if (other.tag == "Player")
             {
@@ -29,12 +29,12 @@ namespace AllMobiles
 
             if (other.tag == "Map")
             {
-                this.GetComponent<Rigidbody>().useGravity = false;
-                this.GetComponent<Rigidbody>().isKinematic = true;
+                this.GetComponent<Rigidbody2D>().gravityScale = 0;
+                this.GetComponent<Rigidbody2D>().isKinematic = true;
             }
         }
 
-        void OnTriggerExit(Collider other)
+        void OnTriggerExit2D(Collider2D other)
         {
             if (other.tag == "Player")
             {

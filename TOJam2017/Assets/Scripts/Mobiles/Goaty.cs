@@ -62,8 +62,8 @@ namespace AllMobiles
                     Debug.Log("Attack 2");
                     break;
                 case 2:
-                    this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
-                    this.GetComponent<BoxCollider>().isTrigger = true;
+                    this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+                    this.GetComponent<PolygonCollider2D>().isTrigger = true;
 
                     Shoot("Goaty/Attack", "ammo3", power);
                     StartCoroutine(BabyGoat());
