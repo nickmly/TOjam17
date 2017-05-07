@@ -37,7 +37,7 @@ namespace AllMobiles
                 foreach (GameObject target in playerTargets)
                 {
                     target.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
-                    target.GetComponent<PolygonCollider2D>().isTrigger = true;
+                    target.GetComponent<ControllerScript>().SetCollidersToTriggers(true);
                 }
 
                 hammerGoat = GameObject.Find("goatHammer(Clone)");
