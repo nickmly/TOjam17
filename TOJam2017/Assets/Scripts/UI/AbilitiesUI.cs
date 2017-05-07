@@ -16,6 +16,7 @@ public class AbilitiesUI : MonoBehaviour {
 
     void Start()
     {
+        Debug.Log("STart");
         mobile = GameMaster.gameMode.currentPlayer.GetComponent<Mobiles>();
     }
     

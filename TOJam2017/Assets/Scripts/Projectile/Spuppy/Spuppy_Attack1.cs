@@ -37,10 +37,10 @@ namespace AllMobiles
 
         }
 
-        void OnCollisionEnter(Collision other)
+        void OnCollisionEnter2D(Collision2D other)
         {
-            Debug.Log("Hit");
-            Destroy(gameObject);
+            //Debug.Log("Hit");
+           // Destroy(gameObject);
 
             if (other.gameObject.tag == "Player")
             {
@@ -48,21 +48,24 @@ namespace AllMobiles
 
                 player.GetComponent<AllMobiles.Mobiles>().TakeDamage(bDamage);
 
-                MapEffects("Prefabs/Explosions/Explosion1", "explosion1", this.transform);
-                Destroy(gameObject);
+                //MapEffects("Prefabs/Explosions/Explosion1", "explosion1", this.transform);
+                //Destroy(gameObject);
             }
 
-            if (other.gameObject.tag == "Map")
-            {
-                MapEffects("Prefabs/Explosions/Explosion1", "explosion1", this.transform);
-                Destroy(gameObject);
-            }
+            //if (other.gameObject.tag == "Map")
+            //{
+            //    MapEffects("Prefabs/Explosions/Explosion1", "explosion1", this.transform);
+            //    Destroy(gameObject);
+            //}
 
-            if (other.gameObject.tag == "DeadShot")
-            {
-                MapEffects("Prefabs/Explosions/Explosion1", "explosion1", this.transform);
-                Destroy(gameObject);
-            }
+            //if (other.gameObject.tag == "DeadShot")
+            //{
+            //    MapEffects("Prefabs/Explosions/Explosion1", "explosion1", this.transform);
+            //    Destroy(gameObject);
+            //}
+
+            MapEffects("Explosions/Explosion1", "explosion1", this.transform);
+            Destroy(gameObject);
         }
     }
 }
