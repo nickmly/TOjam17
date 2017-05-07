@@ -42,14 +42,19 @@ namespace AllMobiles
 
                 player.GetComponent<AllMobiles.Mobiles>().TakeDamage(bDamage);
 
-                Destroy(gameObject, 1.0f);
+                Destroy(gameObject);
             }
 
             if (other.gameObject.tag == "Map")
             {
-                Destroy(gameObject, 1.0f);
+                Destroy(gameObject);
             }
-           
+
+            if (other.gameObject.tag == "DeadShot")
+            {
+                Destroy(gameObject);
+            }
+
         }
     }
 }

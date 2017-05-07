@@ -34,21 +34,23 @@ namespace AllMobiles
 
         void OnCollisionEnter(Collision other)
         {
-            //Debug.Log("Hit");
-            //Destroy(gameObject);
- 
             if (other.gameObject.tag == "Player")
             {
                 player = other.gameObject;
 
                 player.GetComponent<AllMobiles.Mobiles>().TakeDamage(bDamage);
-                Destroy(gameObject, 0.0f);
+                Destroy(gameObject);
 
             }
 
             if (other.gameObject.tag == "Map")
             { 
-                Destroy(gameObject, 1.0f);
+                Destroy(gameObject);
+            }
+
+            if (other.gameObject.tag == "DeadShot")
+            {
+                Destroy(gameObject);
             }
 
         }

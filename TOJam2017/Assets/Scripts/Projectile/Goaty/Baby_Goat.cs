@@ -13,7 +13,7 @@ namespace AllMobiles
         // ------ Base mobile attributes ------
         private int bDamage = 10;
 
-        private float stampedeDelay = 0.5f;
+        private float stampedeDelay = 0.3f;
         // ------ Base mobile attributes ------
 
         void OnCollisionEnter(Collision other)
@@ -36,6 +36,7 @@ namespace AllMobiles
                 player.GetComponent<AllMobiles.Mobiles>().TakeDamage(bDamage);
 
                 StartCoroutine(MultiShots());
+                Destroy(gameObject, 10.0f);
             }
 
             if (other.gameObject.name == "goatStampede(Clone)")
@@ -62,7 +63,7 @@ namespace AllMobiles
                 target.GetComponent<BoxCollider>().isTrigger = false;
                 target.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
             }
-            Destroy(hammerGoat.gameObject);
+            Destroy(hammerGoat);
             Destroy(gameObject);
         }
     }

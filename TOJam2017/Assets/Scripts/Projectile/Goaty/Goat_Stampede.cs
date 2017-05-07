@@ -28,6 +28,8 @@ namespace AllMobiles
 
             if (beginStampede)
             {
+                if (!babyGoat)
+                    Destroy(gameObject);
                 this.transform.position = Vector2.MoveTowards(this.transform.position, babyGoat.transform.position, 0.1f);
             }
            
@@ -35,7 +37,10 @@ namespace AllMobiles
 
         void OnCollisionEnter(Collision other)
         {
-            Debug.Log("Hit");
+            if (other.gameObject.tag == "DeadShot")
+            {
+                Destroy(gameObject);
+            }
 
             if (other.gameObject.name == "babyGoat(Clone)")
             {

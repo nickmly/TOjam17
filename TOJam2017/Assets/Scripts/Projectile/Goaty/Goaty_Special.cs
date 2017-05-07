@@ -8,6 +8,7 @@ namespace AllMobiles
     public class Goaty_Special : Goaty
     {
         GameObject player;
+        GameObject babyGoat;
 
         // ------ Base mobile attributes ------
         private int bProjectileMass = 5;
@@ -21,25 +22,28 @@ namespace AllMobiles
             ProjectilePosition = this.transform;
             ProjectileMass = bProjectileMass;
 
-            Destroy(gameObject, 10.0f);
+            Destroy(gameObject, 7.0f);
         }
 
         // Update is called once per frame
         void Update()
         {
-
+            babyGoat = GameObject.Find("babyGoat(Clone)");
         }
 
         void OnCollisionEnter(Collision other)
         {
-            Debug.Log("Hit");
-
             if (other.gameObject.tag == "Player" || other.gameObject.tag == "Map")
             {
                 Vector2 newPosition = new Vector2(this.transform.position.x, this.transform.position.y + 30);
                 this.transform.position = newPosition;
                 InstEffects("Goaty/Attack", "goatHammer", this.transform);
-                Destroy(gameObject, 1.0f);
+                Destroy(gameObject);
+            }
+            if (other.gameObject.tag == "DeadShot")
+            {
+                Destroy(babyGoat);
+                Destroy(gameObject);
             }
         }
     }
