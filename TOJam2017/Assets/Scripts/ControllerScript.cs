@@ -12,9 +12,19 @@ public class ControllerScript : MonoBehaviour
     Transform gunTransform;
 
     /// <summary>
-    /// Rigidbody component attached to character
+    /// Rigidbody2D component attached to character
     /// </summary>
-    Rigidbody rb;
+    Rigidbody2D rb;
+
+    /// <summary>
+    /// The sprite for this player
+    /// </summary>
+    SpriteRenderer sprite;
+
+    /// <summary>
+    /// Animator for this player
+    /// </summary>
+    Animator animator;
 
     /// <summary>
     /// Mobile component attached to character
@@ -78,14 +88,16 @@ public class ControllerScript : MonoBehaviour
     void AssignMobileType()
     {
         switch (GameMaster.mobileTypes[playerID])
-        {            
+        {
             case GameMaster.MobileType.Skitty:
                 Skitty skitty = gameObject.AddComponent<Skitty>();
                 skitty.gunTransform = gunTransform;
+                animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("MobileModels/Skitty/Model/Skitty");
                 break;
             case GameMaster.MobileType.Goaty:
                 Goaty goaty = gameObject.AddComponent<Goaty>();
                 goaty.gunTransform = gunTransform;
+                animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("MobileModels/Goaty/Model/Goaty");
                 break;
             case GameMaster.MobileType.Spuppy:
                 Spuppy spuppy = gameObject.AddComponent<Spuppy>();
@@ -96,8 +108,11 @@ public class ControllerScript : MonoBehaviour
 
     void Start()
     {
+        animator = GetComponent<Animator>();
         AssignMobileType();
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody2D>();
+        sprite = GetComponent<SpriteRenderer>();
+        
         mobile = GetComponent<Mobiles>();
         mainCam = Camera.main.GetComponent<CameraMovement>();
         powerBar = FindObjectOfType<PowerBar>();
@@ -110,6 +125,7 @@ public class ControllerScript : MonoBehaviour
         {
             HandleInput();
             HandleMovement();
+            HandleAnimation();
         }
     }
 
@@ -129,9 +145,6 @@ public class ControllerScript : MonoBehaviour
     {
         xAxisValue = Input.GetAxis("Horizontal") * Time.deltaTime;
 
-        // ------ Testing ------
-
-
         // Tabbing through the 3 different attacks
         if (Input.GetKeyDown(KeyCode.Tab))
         {
@@ -142,6 +155,7 @@ public class ControllerScript : MonoBehaviour
                 mobile.attack = 0;
             }
         }
+        
         if (!hasShot && powerBar.IsCharging())
         {
             // Checking to see if it will spawn different ammo
@@ -161,7 +175,7 @@ public class ControllerScript : MonoBehaviour
         ////TEST SWITCHING TURNS
         //GameMaster.gameMode.AdvanceTurn();
         ////
-        
+
         Debug.Log("Shooting");
     }
 
@@ -170,8 +184,20 @@ public class ControllerScript : MonoBehaviour
     /// </summary>
     void HandleMovement()
     {
-        if(stamina.CanMove())
+        if (stamina.CanMove())
+        {
             transform.Translate(transform.right * xAxisValue * (moveSpeed * speedImpairment));
+        }
+    }
+
+    void HandleAnimation()
+    {
+        if (IsMoving())
+        {
+            sprite.flipX = xAxisValue > 0;
+        }
+        animator.SetFloat("xAxisValue", Mathf.Abs(xAxisValue));
+        animator.SetBool("charging", powerBar.IsCharging());
     }
 
     public void SetID(int _id)

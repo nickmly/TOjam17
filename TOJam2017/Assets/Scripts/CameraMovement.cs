@@ -25,8 +25,8 @@ public class CameraMovement : MonoBehaviour
         MAX_Z = 1000;
 
         minZoom = 2.5f;
-        maxZoom = 6.5f;
-        zoomFactor = 5;
+        maxZoom = 15.0f;
+        zoomFactor = 10;
         zoomSpeed = 5;
 
         isFollowing = false;
