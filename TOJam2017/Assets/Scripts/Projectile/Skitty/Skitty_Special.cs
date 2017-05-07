@@ -36,11 +36,8 @@ namespace AllMobiles
 
         }
 
-        void OnCollisionEnter(Collision other)
+        void OnCollisionEnter2D(Collision2D other)
         {
-            //Debug.Log("Hit");
-            //Destroy(gameObject);
-
             if (other.gameObject.tag == "Player")
             {
                 player = other.gameObject;

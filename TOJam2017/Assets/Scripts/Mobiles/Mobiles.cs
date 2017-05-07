@@ -12,7 +12,7 @@ namespace AllMobiles
     public class Mobiles : MonoBehaviour
     {
         // ------------ Components ------------
-        private Collider col;
+        private Collider2D col;
         private Health healthBar;
         // ------------ Components ------------
 
@@ -54,7 +54,7 @@ namespace AllMobiles
 
         protected virtual void Start()
         {
-            col = GetComponent<Collider>();
+            col = GetComponent<Collider2D>();
             healthBar = GetComponent<Health>();
             if(healthBar != null)
             {
@@ -158,9 +158,9 @@ namespace AllMobiles
             GameMaster.gameMode.shotTimer.PauseTimer(); //Stop shot timer
 
             GameObject newAmmo = Instantiate(Resources.Load("MobileModels/" + folder + "/" + ammo), ammoSpawn.position, ammoSpawn.rotation) as GameObject;
-            Rigidbody newAmmoRb = newAmmo.GetComponent<Rigidbody>();
+            Rigidbody2D newAmmoRb = newAmmo.GetComponent<Rigidbody2D>();
             newAmmoRb.AddForce(ammoSpawn.transform.up * Force * power);
-            Physics.IgnoreCollision(newAmmo.GetComponent<Collider>(), col);
+            Physics2D.IgnoreCollision(newAmmo.GetComponent<Collider2D>(), col);
 
             //check if skitty multi shot, only focus on first "notskitty" will be set to false after the first projectile is shot 
             //remains false for the rest of the attacks... 
