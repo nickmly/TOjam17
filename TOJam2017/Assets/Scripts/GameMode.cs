@@ -26,7 +26,7 @@ public class GameMode : MonoBehaviour
     // 
 
     //UI
-    AbilitiesUI abilitiesUI;
+    public AbilitiesUI abilitiesUI;
     //
 
     void Awake()
@@ -37,6 +37,7 @@ public class GameMode : MonoBehaviour
 
         playerPrefab = Resources.Load<GameObject>("Prefabs/Player");
         InitGame();
+
     }
 
     /// <summary>
@@ -71,7 +72,8 @@ public class GameMode : MonoBehaviour
 
     void Update()
     {
-
+        if (abilitiesUI.mobile == null)
+            abilitiesUI.mobile = players[currentPlayerTurn].GetComponent<Mobiles>();
     }
 
     /// <summary>
@@ -124,8 +126,7 @@ public class GameMode : MonoBehaviour
         mainCam.FollowTarget(players[index].transform);
         players[index].Activate();
 
-        currentPlayer = players[index];
-        abilitiesUI.SetMobile(currentPlayer.GetComponent<AllMobiles.Mobiles>());
+        currentPlayer = players[index];        
         shotTimer.StartTimer();
     }
 }

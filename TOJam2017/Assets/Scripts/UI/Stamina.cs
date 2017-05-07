@@ -21,6 +21,7 @@ public class Stamina : MonoBehaviour {
     {
         Initialize();
     }
+
     void Update()
     { 
         MoveCheck();
