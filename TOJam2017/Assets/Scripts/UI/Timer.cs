@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour {
 
     public Text counterText;
-
+    public float setShotTime = 5.0f;
     private float seconds = 25f;
-
+    private bool start = false;
     void Start()
     {
         counterText = GetComponent<Text>() as Text;
@@ -17,24 +17,31 @@ public class Timer : MonoBehaviour {
     void Update()
     {
         //seconds -= (int)Time.deltaTime;
-        seconds -= (Time.deltaTime);
-        counterText.text = seconds.ToString("00");
-        ColourMeRad();
+        if (start) {
+            seconds -= (Time.deltaTime);
+            counterText.text = seconds.ToString("00");
+            ColourMeRad();
+            if(seconds <= 0)
+            {
+                GameMaster.gameMode.AdvanceTurn();
+                start = false;
+            }
+        }
     }
 
     void ResetTime()
     {
-        seconds = 25f;
+        seconds = setShotTime;
     }
-
-    void RanOutOfTime()
+    public void StartTimer()
     {
-        if (seconds <= 0)
-        {
-            GameMaster.gameMode.AdvanceTurn();
-        }
+        ResetTime();
+        start = true;
     }
-
+    public void PauseTimer()
+    {
+        start = false;
+    }
     void ColourMeRad()
     {
         if(seconds > 19f)

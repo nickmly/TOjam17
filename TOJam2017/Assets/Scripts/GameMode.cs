@@ -5,6 +5,11 @@ using AllMobiles;
 
 public class GameMode : MonoBehaviour
 {
+    /// <summary>
+    /// Shot timer, resets and starts after switchPlayer()
+    /// takes UI Reference from canvas in editor
+    /// </summary>
+    public Timer shotTimer;
 
     // Camera
     CameraMovement mainCam;
@@ -121,6 +126,6 @@ public class GameMode : MonoBehaviour
 
         currentPlayer = players[index];
         abilitiesUI.SetMobile(currentPlayer.GetComponent<AllMobiles.Mobiles>());
-
+        shotTimer.StartTimer();
     }
 }

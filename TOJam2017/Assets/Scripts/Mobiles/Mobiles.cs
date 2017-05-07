@@ -155,6 +155,8 @@ namespace AllMobiles
 
         public virtual void Shoot(string folder, string ammo, float power)
         {
+            GameMaster.gameMode.shotTimer.PauseTimer(); //Stop shot timer
+
             GameObject newAmmo = Instantiate(Resources.Load("MobileModels/" + folder + "/" + ammo), ammoSpawn.position, ammoSpawn.rotation) as GameObject;
             Rigidbody newAmmoRb = newAmmo.GetComponent<Rigidbody>();
             newAmmoRb.AddForce(ammoSpawn.transform.up * Force * power);

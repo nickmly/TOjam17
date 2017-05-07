@@ -12,13 +12,13 @@ public class CameraMovement : MonoBehaviour
     float screenWidth, screenHeight;
     float moveSpeed = 5f;
     Vector3 position; // center of screen
-    Quaternion rotation;
+   
     Transform followTransform;
 
     private void Awake()
     {
-        MIN_X = 2.5f;
-        MAX_X = 6.5f;
+        MIN_X = -16f;
+        MAX_X = 16f;
         MIN_Y = -10.0f;
         MAX_Y = 17.0f;
         MIN_Z = -1000; // not used yet so 1000 to be safe
@@ -36,7 +36,6 @@ public class CameraMovement : MonoBehaviour
     void Start()
     {
         position = transform.position;
-        rotation = transform.rotation;
         screenWidth = Screen.width;
         screenHeight = Screen.height;
        
@@ -60,6 +59,7 @@ public class CameraMovement : MonoBehaviour
                 isFollowing = false;
             }
         }
+
         HandleZoom();
         UpdateTransform();
     }
@@ -67,9 +67,9 @@ public class CameraMovement : MonoBehaviour
     {
         transform.position = position;
         transform.position = new Vector3(
-            Mathf.Clamp(transform.position.x, MIN_X, MAX_X),
-            Mathf.Clamp(transform.position.y, MIN_Y, MAX_Y),
-            Mathf.Clamp(transform.position.z, MIN_Z, MAX_Z)
+            Mathf.Clamp(position.x, MIN_X, MAX_X),
+            Mathf.Clamp(position.y, MIN_Y, MAX_Y),
+            Mathf.Clamp(position.z, MIN_Z, MAX_Z)
             );
     }
     void HandleZoom()
@@ -111,17 +111,9 @@ public class CameraMovement : MonoBehaviour
     {
         isFollowing = true;
 
-        if (transformToFollow != null)
-        {
-            SnapToPosition(transformToFollow.position);
-            rotation = transformToFollow.rotation;
-            followTransform = transformToFollow;
-        }
-        else
-        {
-            StopFollowing();
-            
-        }
+        SnapToPosition(transformToFollow.position);
+        followTransform = transformToFollow;
+
     }
     public void StopFollowing()
     {
