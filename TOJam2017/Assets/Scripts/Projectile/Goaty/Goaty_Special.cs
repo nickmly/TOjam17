@@ -9,6 +9,7 @@ namespace AllMobiles
     {
         GameObject player;
         GameObject babyGoat;
+        GameObject[] playerTargets;
 
         // ------ Base mobile attributes ------
         private int bProjectileMass = 5;
@@ -47,6 +48,14 @@ namespace AllMobiles
             }
             if (other.gameObject.tag == "DeadShot")
             {
+                playerTargets = GameObject.FindGameObjectsWithTag("Player");
+
+                foreach (GameObject target in playerTargets)
+                {
+                    target.GetComponent<BoxCollider>().isTrigger = false;
+                    target.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
+                }
+
                 Destroy(babyGoat);
                 Destroy(gameObject);
             }

@@ -60,11 +60,11 @@ namespace AllMobiles
                     Debug.Log("Attack 1");
                     break;
                 case 1:
-                    Shoot("skitty/attack", "ammo2", power);
+                    Shoot("Skitty/Attack", "ammo2", power);
                     Debug.Log("Attack 2");
                     break;
                 case 2:
-                    Shoot("skitty/attack", "ammo3", power);
+                    Shoot("Skitty/Attack", "ammo3", power);
                     Debug.Log("Attack 3");
                     break;
                 default:

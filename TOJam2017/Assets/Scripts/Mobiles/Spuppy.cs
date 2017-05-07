@@ -55,15 +55,15 @@ namespace AllMobiles
             switch (attack)
             {
                 case 0:
-                    Shoot("spuppy/attack", "ammo1", power);
+                    Shoot("Spuppy/Attack", "ammo1", power);
                     Debug.Log("Attack 1");
                     break;
                 case 1:
-                    Shoot("spuppy/attack", "ammo1", power);
+                    Shoot("Spuppy/Attack", "ammo2", power);
                     Debug.Log("Attack 2");
                     break;
                 case 2:
-                    Shoot("spuppy/attack", "ammo3", power);
+                    Shoot("Spuppy/Attack", "ammo3", power);
                     Debug.Log("Attack 3");
                     break;
                 default:
