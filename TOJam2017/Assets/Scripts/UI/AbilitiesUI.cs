@@ -8,7 +8,7 @@ public class AbilitiesUI : MonoBehaviour {
 
     //Player Component
     ControllerScript player;
-    Mobiles mobile;
+    public Mobiles mobile;
 
     public Image skill1, skill2, special;
 
@@ -16,8 +16,7 @@ public class AbilitiesUI : MonoBehaviour {
 
     void Start()
     {
-        Debug.Log("STart");
-        mobile = GameMaster.gameMode.currentPlayer.GetComponent<Mobiles>();
+        //mobile = GameMaster.gameMode.currentPlayer.GetComponent<Mobiles>();
     }
     
     /// <summary>
@@ -25,7 +24,7 @@ public class AbilitiesUI : MonoBehaviour {
     /// </summary>
     /// <param name="_mobile"></param>
     public void SetMobile(Mobiles _mobile)
-    {
+    {      
         mobile = _mobile;
     }
 
