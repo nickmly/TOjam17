@@ -46,14 +46,14 @@ namespace AllMobiles
                 player = other.gameObject;
 
                 player.GetComponent<AllMobiles.Mobiles>().TakeDamage(bDamage);
-                InstEffects("Goaty/Attack", "hay", this.transform);
+                MapEffects("Goaty/Attack", "hay", this.transform);
 
                 Destroy(gameObject);
             }
 
             if (other.gameObject.tag == "Map")
             {
-                InstEffects("Goaty/Attack", "hay", this.transform);
+                MapEffects("Goaty/Attack", "hay", this.transform);
                 Destroy(gameObject);
             }
 

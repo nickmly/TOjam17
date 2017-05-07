@@ -177,6 +177,11 @@ namespace AllMobiles
             Camera.main.GetComponent<CameraMovement>().FollowTarget(attackEffect.transform);
         }
 
+        public virtual void MapEffects(string folder, string effect, Transform spawnPosition)
+        {
+            GameObject attackEffect = Instantiate(Resources.Load("MobileModels/" + folder + "/" + effect), spawnPosition.position, Quaternion.identity) as GameObject;
+        }
+
         public virtual void TakeDamage(int damageTaken)
         {
             Debug.Log("Damage taken: " + damageTaken);

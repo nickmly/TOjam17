@@ -14,7 +14,7 @@ namespace AllMobiles
 
         protected override void Start()
         {
-            StartCoroutine(DeadTime());
+            Destroy(gameObject, 30.0f);
         }
 
         protected override void OnDestroy()
@@ -30,14 +30,8 @@ namespace AllMobiles
 
                 player.GetComponent<AllMobiles.Mobiles>().TakeDamage(bDamage);
 
-                Destroy(gameObject, 1.0f);
+                Destroy(gameObject);
             }
-        }
-
-        IEnumerator DeadTime()
-        {
-            yield return new WaitForSeconds(25.0f);
-            Destroy(gameObject);
         }
     }
 }

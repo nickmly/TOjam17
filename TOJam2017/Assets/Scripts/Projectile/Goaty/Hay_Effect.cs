@@ -15,12 +15,7 @@ namespace AllMobiles
 
         protected override void Start()
         {
-            StartCoroutine(DeadTime());
-        }
-
-        protected override void OnDestroy()
-        {
-            base.OnDestroy();
+            Destroy(gameObject, 30.0f);
         }
 
         void OnTriggerEnter(Collider other)
@@ -39,12 +34,6 @@ namespace AllMobiles
                 player = other.gameObject;
                 player.GetComponent<ControllerScript>().speedImpairment = defaultImpaired;
             }
-        }
-
-        IEnumerator DeadTime()
-        {
-            yield return new WaitForSeconds(25.0f);
-            Destroy(gameObject);
         }
     }
 }
