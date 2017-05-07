@@ -13,7 +13,7 @@ namespace AllMobiles
         // ------ Base mobile attributes ------
         private int bDamage = 10;
 
-        private float stampedeDelay = 0.3f;
+        private float stampedeDelay = 0.5f;
         // ------ Base mobile attributes ------
 
         void Update()
@@ -57,7 +57,7 @@ namespace AllMobiles
 
         IEnumerator MultiShots()
         {
-            for (int i = 0; i <= 4; i++)
+            for (int i = 0; i <= 2; i++)
             {
                 InstEffects("Goaty/Attack", "goatStampede", hammerGoat.transform);
                 yield return new WaitForSeconds(stampedeDelay);
