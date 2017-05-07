@@ -12,6 +12,11 @@ namespace AllMobiles
         private int bDamage = 10;
         // ------ Base mobile attributes ------
 
+        protected override void Start()
+        {
+            StartCoroutine(DeadTime());
+        }
+
         protected override void OnDestroy()
         {
             base.OnDestroy();
@@ -27,6 +32,12 @@ namespace AllMobiles
 
                 Destroy(gameObject, 1.0f);
             }
+        }
+
+        IEnumerator DeadTime()
+        {
+            yield return new WaitForSeconds(25.0f);
+            Destroy(gameObject);
         }
     }
 }
