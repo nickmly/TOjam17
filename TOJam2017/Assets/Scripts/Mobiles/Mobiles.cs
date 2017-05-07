@@ -173,6 +173,8 @@ namespace AllMobiles
         public virtual void InstEffects(string folder, string effect, Transform spawnPosition)
         {
             GameObject attackEffect = Instantiate(Resources.Load("MobileModels/" + folder + "/" + effect), spawnPosition.position, Quaternion.identity) as GameObject;
+            GameMaster.gameMode.currentProjectile = attackEffect.transform;
+            Camera.main.GetComponent<CameraMovement>().FollowTarget(attackEffect.transform);
         }
 
         public virtual void TakeDamage(int damageTaken)
