@@ -48,16 +48,19 @@ namespace AllMobiles
 
                 player.GetComponent<AllMobiles.Mobiles>().TakeDamage(bDamage);
 
+                MapEffects("Prefabs/Explosions/Explosion1", "explosion1", this.transform);
                 Destroy(gameObject);
             }
 
             if (other.gameObject.tag == "Map")
             {
+                MapEffects("Prefabs/Explosions/Explosion1", "explosion1", this.transform);
                 Destroy(gameObject);
             }
 
             if (other.gameObject.tag == "DeadShot")
             {
+                MapEffects("Prefabs/Explosions/Explosion1", "explosion1", this.transform);
                 Destroy(gameObject);
             }
         }

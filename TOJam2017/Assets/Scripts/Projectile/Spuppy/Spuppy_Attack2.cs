@@ -46,7 +46,7 @@ namespace AllMobiles
                 player = other.gameObject;
 
                 player.GetComponent<AllMobiles.Mobiles>().TakeDamage(bDamage);
-                MapEffects("Spuppy/Attack", "mine", this.transform);
+                MapEffects("Prefabs/Explosions/Explosion1", "explosion1", this.transform);
 
                 Destroy(gameObject);
             }
