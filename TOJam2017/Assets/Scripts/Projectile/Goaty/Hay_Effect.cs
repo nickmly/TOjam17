@@ -15,6 +15,7 @@ namespace AllMobiles
 
         protected override void Start()
         {
+            this.GetComponent<Rigidbody>().useGravity = true;
             Destroy(gameObject, 30.0f);
         }
 
@@ -24,6 +25,12 @@ namespace AllMobiles
             {
                 player = other.gameObject;
                 player.GetComponent<ControllerScript>().speedImpairment = impairment;
+            }
+
+            if (other.tag == "Map")
+            {
+                this.GetComponent<Rigidbody>().useGravity = false;
+                this.GetComponent<Rigidbody>().isKinematic = true;
             }
         }
 

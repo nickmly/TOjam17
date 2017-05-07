@@ -10,6 +10,7 @@ namespace AllMobiles
 
         protected override void Start()
         {
+            this.GetComponent<Rigidbody>().useGravity = true;
             Destroy(gameObject, 1.0f);
         }
 
@@ -17,7 +18,13 @@ namespace AllMobiles
         {
             if (other.tag == "Player")
             {
-                other.transform.position = Vector2.MoveTowards(other.transform.position, this.transform.position, 0.1f);
+                other.transform.position = Vector2.MoveTowards(other.transform.position, this.transform.position, 0.06f);
+            }
+
+            if (other.tag == "Map")
+            {
+                this.GetComponent<Rigidbody>().useGravity = false;
+                this.GetComponent<Rigidbody>().isKinematic = true;
             }
         }
     }

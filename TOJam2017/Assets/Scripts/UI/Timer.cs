@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour {
 
     public Text counterText;
-    public float setShotTime = 5.0f;
+    public float setShotTime = 25.0f;
     private float seconds = 25f;
     private bool start = false;
     void Start()
