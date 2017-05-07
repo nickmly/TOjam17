@@ -5,6 +5,11 @@ using AllMobiles;
 public class ControllerScript : MonoBehaviour
 {
 
+    // POLYGON COLLIDERS FOR EACH CHARACTER
+    [SerializeField]
+    PolygonCollider2D skittyCollider, goatyCollider, spuppyCollider;
+    //
+
     /// <summary>
     /// Transform for the gun.
     /// </summary>
@@ -92,31 +97,40 @@ public class ControllerScript : MonoBehaviour
             case GameMaster.MobileType.Skitty:
                 Skitty skitty = gameObject.AddComponent<Skitty>();
                 skitty.gunTransform = gunTransform;
+                sprite.sprite = Resources.Load<Sprite>("Textures/Skitty/Model/alien_normal");
                 animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("MobileModels/Skitty/Model/Skitty");
+                skittyCollider.enabled = true;
                 break;
             case GameMaster.MobileType.Goaty:
                 Goaty goaty = gameObject.AddComponent<Goaty>();
                 goaty.gunTransform = gunTransform;
+                sprite.sprite = Resources.Load<Sprite>("Textures/Goaty/Model/char_goat_hop-1");
                 animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("MobileModels/Goaty/Model/Goaty");
+                goatyCollider.enabled = true;
                 break;
             case GameMaster.MobileType.Spuppy:
                 Spuppy spuppy = gameObject.AddComponent<Spuppy>();
                 spuppy.gunTransform = gunTransform;
+                sprite.sprite = Resources.Load<Sprite>("Textures/Spuppy/Model/char_solider_1");
+                animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("MobileModels/Spuppy/Model/Spuppy");
+                spuppyCollider.enabled = true;
                 break;
         }
+        
     }
 
     void Start()
     {
+        sprite = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+
         AssignMobileType();
         rb = GetComponent<Rigidbody2D>();
-        sprite = GetComponent<SpriteRenderer>();
+   
         
         mobile = GetComponent<Mobiles>();
         mainCam = Camera.main.GetComponent<CameraMovement>();
         powerBar = FindObjectOfType<PowerBar>();
-
     }
 
     void Update()
