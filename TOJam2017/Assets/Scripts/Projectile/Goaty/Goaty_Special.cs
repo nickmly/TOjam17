@@ -41,7 +41,7 @@ namespace AllMobiles
         {
             if (other.gameObject.tag == "Player" || other.gameObject.tag == "Map")
             {
-                Vector2 newPosition = new Vector2(this.transform.position.x, this.transform.position.y + 30);
+                Vector2 newPosition = new Vector2(this.transform.position.x, this.transform.position.y + 20);
                 this.transform.position = newPosition;
                 InstEffects("Goaty/Attack", "goatHammer", this.transform);
                 Destroy(gameObject);

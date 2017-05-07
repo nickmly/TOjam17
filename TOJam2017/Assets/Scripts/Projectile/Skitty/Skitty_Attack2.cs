@@ -43,12 +43,13 @@ namespace AllMobiles
                 player = other.gameObject;
 
                 player.GetComponent<AllMobiles.Mobiles>().TakeDamage(bDamage);
-
+                InstEffects("Skitty/Attack", "gravity", this.transform);
                 Destroy(gameObject);
             }
 
             if (other.gameObject.tag == "Map")
             {
+                InstEffects("Skitty/Attack", "gravity", this.transform);
                 Destroy(gameObject);
             }
 
@@ -58,18 +59,5 @@ namespace AllMobiles
             }
 
         }
-
-        /*
-        void OnTriggerEnter(Collider other)
-        {
-            if (other.tag == "Player")
-            {
-                player = other.gameObject;
-                foreach (target in player)
-                {
-
-                }
-            }
-        }*/
     }
 }
