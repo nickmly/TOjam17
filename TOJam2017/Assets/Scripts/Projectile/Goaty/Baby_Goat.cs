@@ -70,8 +70,8 @@ namespace AllMobiles
             
             foreach (GameObject target in playerTargets)
             {
-                target.GetComponent<BoxCollider>().isTrigger = false;
-                target.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
+                target.GetComponent<PolygonCollider2D>().isTrigger = false;
+                target.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
             }
             Destroy(hammerGoat);
             Destroy(gameObject);
