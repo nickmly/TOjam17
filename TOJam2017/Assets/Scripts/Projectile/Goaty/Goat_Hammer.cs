@@ -48,7 +48,7 @@ namespace AllMobiles
                 player.GetComponent<AllMobiles.Mobiles>().TakeDamage(bDamage);
 
                 this.transform.rotation = Quaternion.identity;
-                this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+                this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
                 this.GetComponent<PolygonCollider2D>().isTrigger = true;
             }
 
@@ -63,6 +63,13 @@ namespace AllMobiles
 
         void OnTriggerEnter2D(Collider2D other)
         {
+            if (other.gameObject.tag == "Map")
+            {
+                babyGoatStart = true;
+                this.transform.rotation = Quaternion.identity;
+                this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+            }
+
             if (other.gameObject.name == "babyGoat(Clone)")
             {
                 babyGoatStart = false;
