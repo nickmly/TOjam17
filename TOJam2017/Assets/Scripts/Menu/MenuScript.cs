@@ -9,7 +9,7 @@ public class MenuScript : MonoBehaviour {
     public GameObject playerFieldPrefab;
 
     //Panels
-    public GameObject menuPanel, lobbyPanel;
+    public GameObject menuPanel, lobbyPanel, creditsPanel;
 
     public Transform playerGrid;
 
@@ -41,6 +41,7 @@ public class MenuScript : MonoBehaviour {
     {
         menuPanel.SetActive(false);
         lobbyPanel.SetActive(false);
+        creditsPanel.SetActive(false);
     }
 
     void AddPlayerName()
@@ -68,6 +69,12 @@ public class MenuScript : MonoBehaviour {
         DisableAllPanels();
         lobbyPanel.SetActive(true);
         AddPlayerName();
+    }
+
+    public void OnClickCreditBtn()
+    {
+        DisableAllPanels();
+        creditsPanel.SetActive(true);
     }
 
     public void OnClickAddPlayerBtn()
