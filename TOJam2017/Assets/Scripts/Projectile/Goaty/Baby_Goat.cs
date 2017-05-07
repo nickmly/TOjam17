@@ -16,6 +16,10 @@ namespace AllMobiles
         private float stampedeDelay = 0.3f;
         // ------ Base mobile attributes ------
 
+        void Update()
+        {
+            playerTargets = GameObject.FindGameObjectsWithTag("Player");
+        }
 
         protected override void OnDestroy()
         {
@@ -29,7 +33,6 @@ namespace AllMobiles
             if (other.gameObject.tag == "Player")
             {
                 this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-                playerTargets = GameObject.FindGameObjectsWithTag("Player");
 
                 foreach (GameObject target in playerTargets)
                 {
