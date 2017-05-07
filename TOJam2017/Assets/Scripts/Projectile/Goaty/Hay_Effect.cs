@@ -13,6 +13,11 @@ namespace AllMobiles
         private float impairment = 0.4f;
         // ------ Base mobile attributes ------
 
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+        }
+
         void OnTriggerEnter(Collider other)
         {
             if (other.tag == "Player")

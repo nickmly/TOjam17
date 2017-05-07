@@ -20,6 +20,11 @@ namespace AllMobiles
         {
         }
 
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+        }
+
         void Update()
         {
             if (!babyGoatStart)

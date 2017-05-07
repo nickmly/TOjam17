@@ -12,6 +12,11 @@ namespace AllMobiles
         private int bDamage = 10;
         // ------ Base mobile attributes ------
 
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+        }
+
         void OnCollisionEnter(Collision other)
         {
             if (other.gameObject.tag == "Player")

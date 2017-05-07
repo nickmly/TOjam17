@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using AllMobiles;
 
 public class GameMode : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class GameMode : MonoBehaviour
     public ControllerScript currentPlayer;
     public int currentPlayerTurn = 0;
     GameObject playerPrefab;
-
+    public Transform currentProjectile;
     public Transform[] spawnPoints;
     // 
 
@@ -92,7 +93,7 @@ public class GameMode : MonoBehaviour
     /// </summary>
     public void AdvanceTurn()
     {
-        Invoke("UpdateTurn", 3.0f); // delay this function by a second
+        Invoke("UpdateTurn", 1.0f); // delay this function by a second
     }
 
     void UpdateTurn()

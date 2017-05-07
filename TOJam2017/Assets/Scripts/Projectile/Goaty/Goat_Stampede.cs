@@ -21,6 +21,11 @@ namespace AllMobiles
             Destroy(gameObject, 10.0f);
         }
 
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+        }
+
         void Update()
         {
             if (!babyGoat)

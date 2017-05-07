@@ -163,6 +163,7 @@ namespace AllMobiles
                 Camera.main.GetComponent<CameraMovement>().FollowTarget(newAmmoRb.transform);
             }
             Camera.main.GetComponent<CameraMovement>().notSkitty = true;
+            GameMaster.gameMode.currentProjectile = newAmmo.transform;
         }
 
         public virtual void InstEffects(string folder, string effect, Transform spawnPosition)
@@ -180,5 +181,14 @@ namespace AllMobiles
             healthBar.TakeDamage(damageTaken);
         }
         // ------------ Functionalities ------------
+
+        protected virtual void OnDestroy()
+        {
+            if (transform == GameMaster.gameMode.currentProjectile)
+            {
+                GameMaster.gameMode.AdvanceTurn();
+            }
+        }
+    
     }
 }

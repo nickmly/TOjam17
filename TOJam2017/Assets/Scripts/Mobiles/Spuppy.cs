@@ -37,6 +37,11 @@ namespace AllMobiles
             base.Start();
         }
 
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+        }
+
         // Update is called once per frame
         void Update()
         {

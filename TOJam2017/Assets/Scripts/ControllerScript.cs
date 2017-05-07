@@ -178,9 +178,9 @@ public class ControllerScript : MonoBehaviour
         mobile.AttackShot(powerBar.GetValue());
         hasShot = true;
 
-        //TEST SWITCHING TURNS
-        GameMaster.gameMode.AdvanceTurn();
-        //
+        ////TEST SWITCHING TURNS
+        //GameMaster.gameMode.AdvanceTurn();
+        ////
         
         Debug.Log("Shooting");
     }

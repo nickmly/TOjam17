@@ -16,6 +16,13 @@ namespace AllMobiles
         private float stampedeDelay = 0.3f;
         // ------ Base mobile attributes ------
 
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+        }
+
+
         void OnCollisionEnter(Collision other)
         {
 

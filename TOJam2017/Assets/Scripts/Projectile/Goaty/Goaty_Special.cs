@@ -25,6 +25,11 @@ namespace AllMobiles
             Destroy(gameObject, 7.0f);
         }
 
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+        }
+
         // Update is called once per frame
         void Update()
         {
