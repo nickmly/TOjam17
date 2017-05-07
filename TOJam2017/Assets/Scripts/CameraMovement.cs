@@ -4,7 +4,8 @@ public class CameraMovement : MonoBehaviour
 {
 
     //MemberVariables
-    public float zoomFactor, zoomSpeed, minZoom, maxZoom;
+    private float zoomFactor, zoomSpeed, minZoom, maxZoom;
+    private float MIN_X, MIN_Y, MIN_Z, MAX_X, MAX_Y, MAX_Z; //CONSTRAING VALUES
     private bool isFollowing;
     public bool notSkitty;
     public bool skitty1;
@@ -16,10 +17,18 @@ public class CameraMovement : MonoBehaviour
 
     private void Awake()
     {
+        MIN_X = 2.5f;
+        MAX_X = 6.5f;
+        MIN_Y = -10.0f;
+        MAX_Y = 17.0f;
+        MIN_Z = -1000; // not used yet so 1000 to be safe
+        MAX_Z = 1000;
+
         minZoom = 2.5f;
         maxZoom = 6.5f;
         zoomFactor = 5;
         zoomSpeed = 5;
+
         isFollowing = false;
         notSkitty = false;
     }
@@ -52,14 +61,22 @@ public class CameraMovement : MonoBehaviour
             }
         }
         HandleZoom();
+        UpdateTransform();
+    }
+    void UpdateTransform()
+    {
         transform.position = position;
+        transform.position = new Vector3(
+            Mathf.Clamp(transform.position.x, MIN_X, MAX_X),
+            Mathf.Clamp(transform.position.y, MIN_Y, MAX_Y),
+            Mathf.Clamp(transform.position.z, MIN_Z, MAX_Z)
+            );
     }
     void HandleZoom()
     {
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         if (scroll != 0.0f)
         {
-            print(scroll);
             zoomFactor -= scroll * zoomSpeed;
             zoomFactor = Mathf.Clamp(zoomFactor, minZoom, maxZoom);
         }
