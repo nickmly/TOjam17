@@ -39,7 +39,7 @@ namespace AllMobiles
                 {
                     Destroy(gameObject);
                 }
-                this.transform.position = Vector2.MoveTowards(new Vector2(this.transform.position.x, 0), new Vector2(babyGoat.transform.position.x, 0), 0.1f);
+                this.transform.position = Vector2.MoveTowards(this.transform.position, babyGoat.transform.position, 0.1f);
             }
            
         }

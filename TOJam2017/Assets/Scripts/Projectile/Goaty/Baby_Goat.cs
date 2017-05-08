@@ -19,7 +19,6 @@ namespace AllMobiles
         void Update()
         {
             playerTargets = GameObject.FindGameObjectsWithTag("Player");
-            hammerGoat = GameObject.Find("goatHammer(Clone)");
         }
 
         protected override void OnDestroy()
@@ -39,6 +38,7 @@ namespace AllMobiles
                     target.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
                     target.GetComponent<PolygonCollider2D>().isTrigger = true;
                 }
+                hammerGoat = GameObject.Find("goatHammer(Clone)");
                 hammerGoat.GetComponent<Goat_Hammer>().babyGoatStart = false;
                 player = other.gameObject;
                 player.GetComponent<AllMobiles.Mobiles>().TakeDamage(bDamage);
