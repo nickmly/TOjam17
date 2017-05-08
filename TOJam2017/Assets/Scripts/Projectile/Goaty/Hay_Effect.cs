@@ -30,7 +30,7 @@ namespace AllMobiles
             if (other.tag == "Map")
             {
                 this.GetComponent<Rigidbody2D>().gravityScale = 0;
-                this.GetComponent<Rigidbody2D>().isKinematic = true;
+                this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
             }
         }
 
