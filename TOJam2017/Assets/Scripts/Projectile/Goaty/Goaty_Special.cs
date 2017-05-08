@@ -52,7 +52,7 @@ namespace AllMobiles
 
                 foreach (GameObject target in playerTargets)
                 {
-                    target.GetComponent<ControllerScript>().SetCollidersToTriggers(false);
+                    target.GetComponent<PolygonCollider2D>().isTrigger = false;
                     target.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
                 }
 

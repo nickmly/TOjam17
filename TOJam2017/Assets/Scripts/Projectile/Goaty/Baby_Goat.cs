@@ -8,7 +8,7 @@ namespace AllMobiles
     {
         GameObject player;
         GameObject hammerGoat;
-        GameObject[] playerTargets;
+        public GameObject[] playerTargets;
 
         // ------ Base mobile attributes ------
         private int bDamage = 10;
@@ -33,11 +33,10 @@ namespace AllMobiles
             if (other.gameObject.tag == "Player")
             {
                 this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
-
                 foreach (GameObject target in playerTargets)
                 {
-                    target.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
-                    target.GetComponent<ControllerScript>().SetCollidersToTriggers(true);
+                    target.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+                    target.GetComponent<PolygonCollider2D>().isTrigger = true;
                 }
 
                 hammerGoat = GameObject.Find("goatHammer(Clone)");
@@ -70,7 +69,7 @@ namespace AllMobiles
             
             foreach (GameObject target in playerTargets)
             {
-                target.GetComponent<ControllerScript>().SetCollidersToTriggers(false);
+                target.GetComponent<PolygonCollider2D>().isTrigger = false;
                 target.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
             }
             Destroy(hammerGoat);

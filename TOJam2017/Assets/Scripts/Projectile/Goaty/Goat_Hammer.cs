@@ -33,7 +33,7 @@ namespace AllMobiles
             }
             if (babyGoatStart)
             {
-                babyGoat.transform.position = Vector2.MoveTowards(babyGoat.transform.position, this.transform.position, 0.02f);
+                babyGoat.transform.position = Vector2.MoveTowards(babyGoat.transform.position, this.transform.position, 0.1f);
             }
         }
 
@@ -56,7 +56,7 @@ namespace AllMobiles
             {
                 babyGoatStart = true;
                 this.transform.rotation = Quaternion.identity;
-                this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+                this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
                 this.GetComponent<PolygonCollider2D>().isTrigger = true;
             }
         }
@@ -65,9 +65,8 @@ namespace AllMobiles
         {
             if (other.gameObject.tag == "Map")
             {
-                babyGoatStart = true;
                 this.transform.rotation = Quaternion.identity;
-                this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+                this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
             }
 
             if (other.gameObject.name == "babyGoat(Clone)")
