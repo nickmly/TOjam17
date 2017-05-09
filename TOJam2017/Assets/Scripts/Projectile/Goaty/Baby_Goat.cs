@@ -35,6 +35,7 @@ namespace AllMobiles
                 this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
                 foreach (GameObject target in playerTargets)
                 {
+                    Debug.Log(target + "Trigger is on");
                     target.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
                     target.GetComponent<PolygonCollider2D>().isTrigger = true;
                 }
@@ -64,7 +65,7 @@ namespace AllMobiles
 
         IEnumerator CleanUp()
         {
-            yield return new WaitForSeconds(2.0f);
+            yield return new WaitForSeconds(2.5f);
             
             foreach (GameObject target in playerTargets)
             {

@@ -9,6 +9,7 @@ namespace AllMobiles
     {
         GameObject player;
         GameObject babyGoat;
+        public GameObject[] playerTargets;
 
         // ------ Base mobile attributes ------
         private int bDamage = 10;
@@ -18,6 +19,7 @@ namespace AllMobiles
         // Use this for initialization
         protected override void Start()
         {
+            StartCoroutine(CleanUp());
         }
 
         protected override void OnDestroy()
@@ -35,6 +37,8 @@ namespace AllMobiles
             {
                 babyGoat.transform.position = Vector2.MoveTowards(babyGoat.transform.position, this.transform.position, 0.1f);
             }
+
+            playerTargets = GameObject.FindGameObjectsWithTag("Player");
         }
 
         void OnCollisionEnter2D(Collision2D other)
@@ -75,6 +79,18 @@ namespace AllMobiles
                 Destroy(other.gameObject);
                 Destroy(gameObject);
             }
+        }
+
+        IEnumerator CleanUp()
+        {
+            yield return new WaitForSeconds(10.0f);
+
+            foreach (GameObject target in playerTargets)
+            {
+                target.GetComponent<PolygonCollider2D>().isTrigger = false;
+                target.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+            }
+            Destroy(gameObject);
         }
     }
 }

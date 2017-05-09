@@ -186,11 +186,15 @@ namespace AllMobiles
 
         public virtual void TakeDamage(int damageTaken)
         {
-            Debug.Log("Damage taken: " + damageTaken);
-            // *** Need a better method for the armour and damage calculation ****
-            //Health = Health - (damageTaken - Armour);
-            // *** Need a better method for the armour and damage calculation ****
-            Health = Health - damageTaken;
+            // Get the sum of armour and damage
+            int dmgCalculation = damageTaken + armour;
+            // Find the percentage of damage being dealt through the armour
+            float armourReduction = damageTaken / dmgCalculation;
+            // Multiply damage by percentage recieved to target
+            int trueDamage = (int)armourReduction * damageTaken;
+            // Calculate damage
+            Health = Health - trueDamage;
+
             healthBar.TakeDamage(damageTaken);
         }
         // ------------ Functionalities ------------
